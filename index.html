@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>ONE FM ENGIE – Action Tracking Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+/* ── CBRE Brand Colors ─────────────────────────────────────────────── */
+:root{
+  --cbre-green:#003F2D;
+  --cbre-dark-green:#012A2D;
+  --cbre-accent:#17E88F;
+  --cbre-midnight:#032842;
+  --cbre-midnight-tint:#778F9C;
+  --cbre-sage:#538184;
+  --cbre-celadon:#80BBAD;
+  --cbre-wheat:#DBD99A;
+  --cbre-dark-grey:#435254;
+  --cbre-light-grey:#CAD1D3;
+  --cbre-cement:#7F8480;
+  --cbre-data-blue:#3E7CA6;
+  --cbre-data-orange:#D2785A;
+  --cbre-neg-red:#AD2A2A;
+  --bg:#011a12;
+  --bg2:#012a1e;
+  --bg3:#013d2c;
+  --border:rgba(0,179,134,.15);
+  --border2:rgba(23,232,143,.2);
+  --text:#e8f5f0;
+  --muted:#96B3B6;
+  --card:#012a1e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* ── Header ────────────────────────────────────────────────────────── */
+header{
+  background:var(--cbre-green);
+  border-bottom:3px solid var(--cbre-accent);
+  padding:0 32px;
+  display:flex;align-items:stretch;gap:0;flex-wrap:wrap;
+  position:sticky;top:0;z-index:50;
+}
+.header-brand{display:flex;flex-direction:column;justify-content:center;padding:14px 0;border-right:1px solid rgba(255,255,255,.15);padding-right:28px;margin-right:28px}
+.logo{font-size:22px;font-weight:800;color:#fff;letter-spacing:1.5px;font-family:Georgia,serif}
+.logo-sub{font-size:10px;color:var(--cbre-accent);letter-spacing:3px;text-transform:uppercase;margin-top:2px;font-weight:600}
+.header-meta{display:flex;flex-direction:column;justify-content:center;font-size:11px;color:rgba(255,255,255,.6);line-height:1.6}
+.header-meta strong{color:rgba(255,255,255,.9);font-size:12px}
+.hright{display:flex;align-items:center;gap:12px;margin-left:auto;padding:14px 0}
+.sync-badge{font-size:11px;padding:3px 10px;border-radius:2px;border:1px solid;font-weight:700;letter-spacing:.5px;white-space:nowrap}
+.sync-badge.ok{color:var(--cbre-accent);border-color:var(--cbre-accent);background:rgba(23,232,143,.08)}
+.sync-badge.warn{color:var(--cbre-wheat);border-color:var(--cbre-wheat);background:rgba(219,217,154,.08)}
+.sync-badge.err{color:#ff9090;border-color:#ff9090}
+nav{display:flex;gap:0;height:100%}
+.tab-btn{
+  background:transparent;border:none;border-bottom:3px solid transparent;
+  color:rgba(255,255,255,.6);padding:0 20px;
+  cursor:pointer;font-size:13px;font-weight:600;letter-spacing:.3px;
+  transition:all .2s;white-space:nowrap;margin-bottom:-3px;
+}
+.tab-btn.active{color:#fff;border-bottom-color:var(--cbre-accent)}
+.tab-btn:hover:not(.active){color:rgba(255,255,255,.9);background:rgba(255,255,255,.06)}
+
+/* ── Views ─────────────────────────────────────────────────────────── */
+.view{display:none;padding:28px 32px}.view.active{display:block}
+
+/* ── Hero strip (dashboard) ─────────────────────────────────────────── */
+.dash-hero{
+  background:linear-gradient(135deg,var(--cbre-green) 0%,var(--cbre-dark-green) 100%);
+  border-radius:4px;padding:28px 32px;margin-bottom:24px;
+  display:flex;align-items:center;gap:40px;flex-wrap:wrap;
+  position:relative;overflow:hidden;
+  border-left:4px solid var(--cbre-accent);
+}
+.dash-hero::after{content:'';position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:rgba(23,232,143,.06)}
+.hero-text h1{font-size:22px;font-weight:800;color:#fff;font-family:Georgia,serif;margin-bottom:4px}
+.hero-text p{font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;max-width:460px}
+.hero-tag{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--cbre-accent);text-transform:uppercase;margin-bottom:6px}
+.hero-kpis{display:flex;gap:32px;flex-wrap:wrap;margin-left:auto}
+.hero-stat{text-align:center}
+.hero-stat .hbig{font-size:38px;font-weight:800;color:var(--cbre-accent);line-height:1;font-family:Georgia,serif}
+.hero-stat .hunit{font-size:11px;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.5px}
+
+/* ── KPI Grid ───────────────────────────────────────────────────────── */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px;margin-bottom:24px}
+.kpi{
+  background:var(--card);border:1px solid var(--border);border-radius:4px;
+  padding:18px 16px;position:relative;overflow:hidden;
+}
+.kpi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--kpi-color,var(--cbre-accent))}
+.kpi .num{font-size:30px;font-weight:800;color:var(--kpi-color,var(--cbre-accent));line-height:1;margin-bottom:4px;font-family:Georgia,serif}
+.kpi .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;font-weight:600}
+.kpi .sub{font-size:10px;color:var(--cbre-accent);margin-top:3px;font-weight:600}
+
+/* ── Section header ─────────────────────────────────────────────────── */
+.section-hdr{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.section-hdr h2{font-size:13px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:1px}
+.section-line{flex:1;height:1px;background:var(--border)}
+
+/* ── Charts ─────────────────────────────────────────────────────────── */
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:20px}
+.chart-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px}
+.chart-wrap{position:relative;height:200px}
+
+/* ── Overdue banner ─────────────────────────────────────────────────── */
+.overdue-banner{
+  background:rgba(173,42,42,.12);border:1px solid rgba(173,42,42,.4);border-left:4px solid #AD2A2A;
+  border-radius:4px;padding:14px 20px;margin-bottom:24px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.overdue-icon{font-size:22px;flex-shrink:0}
+.overdue-text strong{font-size:14px;color:#ff9090;font-weight:700}
+.overdue-text p{font-size:12px;color:rgba(255,144,144,.7);margin-top:2px}
+.overdue-pills{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.overdue-pill{background:rgba(173,42,42,.2);border:1px solid rgba(173,42,42,.4);color:#ff9090;font-size:11px;font-weight:600;padding:3px 10px;border-radius:2px;white-space:nowrap}
+
+/* ── Table ───────────────────────────────────────────────────────────── */
+.table-toolbar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.table-toolbar input,.table-toolbar select{
+  background:#011a12;border:1px solid var(--border2);color:var(--text);
+  padding:8px 12px;border-radius:2px;font-size:13px;outline:none;
+}
+.table-toolbar input{flex:1;min-width:160px}
+.table-toolbar input::placeholder{color:var(--muted)}
+.table-toolbar select option{background:#012a1e}
+.btn-add{
+  background:var(--cbre-green);color:var(--cbre-accent);border:1px solid var(--cbre-accent);
+  padding:8px 18px;border-radius:2px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;
+  letter-spacing:.3px;transition:all .2s;
+}
+.btn-add:hover{background:var(--cbre-accent);color:var(--cbre-green)}
+.tbl-wrap{overflow-x:auto;border-radius:4px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{
+  background:var(--cbre-green);color:rgba(255,255,255,.7);
+  text-transform:uppercase;letter-spacing:.5px;font-size:10px;font-weight:700;
+  padding:11px 12px;text-align:left;white-space:nowrap;position:sticky;top:0;z-index:1;
+  border-bottom:2px solid var(--cbre-accent);
+}
+td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top;color:var(--text);word-wrap:break-word}
+tr:hover td{background:rgba(23,232,143,.04)}
+.tr-overdue td{background:rgba(173,42,42,.06)}
+.tr-overdue:hover td{background:rgba(173,42,42,.1)}
+
+/* ── Badges ──────────────────────────────────────────────────────────── */
+.badge{display:inline-block;padding:2px 8px;border-radius:2px;font-size:11px;font-weight:700;white-space:nowrap;letter-spacing:.3px}
+.b-closed{background:rgba(0,63,45,.6);color:var(--cbre-accent);border:1px solid rgba(23,232,143,.3)}
+.b-inprog{background:rgba(62,124,166,.2);color:#7ab8f5;border:1px solid rgba(62,124,166,.4)}
+.b-notstart{background:rgba(219,217,154,.1);color:var(--cbre-wheat);border:1px solid rgba(219,217,154,.3)}
+.b-block{background:rgba(173,42,42,.2);color:#ff9090;border:1px solid rgba(173,42,42,.4)}
+.b-overdue{background:rgba(173,42,42,.15);color:#ffaaaa;border:1px solid rgba(173,42,42,.3);font-size:10px;padding:1px 6px}
+.b-p1{background:rgba(173,42,42,.2);color:#ff9090;border:1px solid rgba(173,42,42,.4)}
+.b-p2{background:rgba(219,217,154,.1);color:var(--cbre-wheat);border:1px solid rgba(219,217,154,.3)}
+.b-p3{background:rgba(128,187,173,.1);color:var(--cbre-celadon);border:1px solid rgba(128,187,173,.3)}
+.btn-edit{background:transparent;border:1px solid var(--border2);color:var(--muted);padding:4px 10px;border-radius:2px;cursor:pointer;font-size:11px;font-weight:600}
+.btn-edit:hover{background:var(--cbre-accent);color:var(--cbre-green);border-color:var(--cbre-accent)}
+
+/* ── Modal ───────────────────────────────────────────────────────────── */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:100;align-items:center;justify-content:center;padding:20px}
+.modal-bg.open{display:flex}
+.modal{background:#012a1e;border:1px solid var(--border2);border-top:3px solid var(--cbre-accent);border-radius:4px;width:100%;max-width:680px;max-height:92vh;overflow-y:auto}
+.modal-header{padding:18px 24px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#012a1e;z-index:2}
+.modal-header h2{font-size:16px;font-weight:800;color:#fff;font-family:Georgia,serif}
+.modal-close{background:transparent;border:none;color:var(--muted);font-size:22px;cursor:pointer;line-height:1}
+.modal-close:hover{color:var(--cbre-accent)}
+.modal-body{padding:20px 24px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:10px;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;background:#011a12;border:1px solid var(--border2);color:var(--text);
+  padding:9px 12px;border-radius:2px;font-size:13px;outline:none;font-family:inherit;
+}
+.form-group input[type=date]{color-scheme:dark}
+.form-group textarea{resize:vertical;min-height:72px}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--cbre-accent)}
+.form-group select option{background:#012a1e}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.prev-comments{background:#011a12;border:1px solid var(--border);border-radius:2px;padding:10px 12px;max-height:150px;overflow-y:auto;font-size:12px;color:var(--muted);margin-bottom:8px}
+.comment-entry{margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.comment-entry:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.comment-meta{font-size:10px;color:var(--cbre-sage);margin-bottom:3px;font-weight:700}
+.ro-field{background:#011a12;border:1px solid var(--border);border-radius:2px;padding:9px 12px;font-size:13px;color:var(--muted)}
+.modal-footer{padding:14px 24px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;align-items:center;position:sticky;bottom:0;background:#012a1e}
+.btn-save{background:var(--cbre-accent);color:var(--cbre-green);border:none;padding:9px 24px;border-radius:2px;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:.3px}
+.btn-cancel{background:transparent;border:1px solid var(--border2);color:var(--muted);padding:9px 18px;border-radius:2px;font-size:13px;cursor:pointer}
+.btn-save:hover{background:#45EDA5}.btn-cancel:hover{color:#fff;border-color:#fff}
+.btn-save:disabled{opacity:.5;cursor:not-allowed}
+.sec{font-size:10px;font-weight:700;color:var(--cbre-accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);margin-top:4px}
+
+/* ── Toast ───────────────────────────────────────────────────────────── */
+.toast{position:fixed;bottom:24px;right:24px;padding:12px 20px;border-radius:2px;font-size:13px;font-weight:700;z-index:300;transform:translateY(80px);opacity:0;transition:all .3s;max-width:340px;border-left:3px solid}
+.toast.ok{background:#012a1e;color:var(--cbre-accent);border-color:var(--cbre-accent)}
+.toast.err{background:#1a0606;color:#ff9090;border-color:#AD2A2A}
+.toast.show{transform:translateY(0);opacity:1}
+.spinner{display:inline-block;width:12px;height:12px;border:2px solid rgba(23,232,143,.3);border-top-color:var(--cbre-accent);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:4px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.big-spin{width:28px;height:28px;border:3px solid rgba(23,232,143,.15);border-top-color:var(--cbre-accent);border-radius:50%;animation:spin .7s linear infinite}
+.loading-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:14px;color:var(--muted)}
+
+/* ── About ───────────────────────────────────────────────────────────── */
+.about-wrap{max-width:900px;margin:0 auto}
+.about-hero{
+  background:linear-gradient(135deg,var(--cbre-green) 0%,var(--cbre-dark-green) 100%);
+  border-radius:4px;padding:48px 40px;margin-bottom:32px;
+  border-left:4px solid var(--cbre-accent);position:relative;overflow:hidden;
+}
+.about-hero::before{content:'';position:absolute;right:-60px;top:-60px;width:280px;height:280px;border-radius:50%;background:rgba(23,232,143,.05)}
+.about-hero::after{content:'';position:absolute;right:60px;bottom:-40px;width:160px;height:160px;border-radius:50%;background:rgba(23,232,143,.04)}
+.ah-tag{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--cbre-accent);margin-bottom:12px}
+.ah-title{font-size:36px;font-weight:800;color:#fff;font-family:Georgia,serif;line-height:1.15;margin-bottom:12px}
+.ah-desc{font-size:14px;color:rgba(255,255,255,.65);line-height:1.7;max-width:580px;margin-bottom:36px}
+.ah-stats{display:flex;gap:40px;flex-wrap:wrap}
+.ah-stat .big{font-size:44px;font-weight:800;color:var(--cbre-accent);line-height:1;font-family:Georgia,serif}
+.ah-stat .unit{font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px}
+.about-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px}
+.about-card h3{font-size:11px;font-weight:700;color:var(--cbre-accent);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.about-card ul{list-style:none}
+.about-card ul li{padding:7px 0;border-bottom:1px solid rgba(23,232,143,.07);color:#c8e8df;font-size:13px;line-height:1.5;display:flex;gap:10px}
+.about-card ul li:last-child{border-bottom:none}
+.about-card ul li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cbre-accent);flex-shrink:0;margin-top:6px}
+.about-section{margin-bottom:32px}
+.about-section h2{font-size:14px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border);font-family:Georgia,serif}
+.tl-wrap{position:relative;padding-left:28px}
+.tl-wrap::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border2)}
+.tl-item{position:relative;margin-bottom:28px}
+.tl-dot{position:absolute;left:-23px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--border);border:2px solid var(--bg2)}
+.tl-dot.active{background:var(--cbre-accent);border-color:var(--cbre-green);box-shadow:0 0 0 4px rgba(23,232,143,.15)}
+.tl-phase{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--cbre-accent);margin-bottom:3px}
+.tl-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px}
+.tl-desc{font-size:13px;color:var(--muted);line-height:1.55}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.pillar{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--cbre-accent);border-radius:0 4px 4px 0;padding:14px 18px}
+.pillar-num{font-size:10px;font-weight:700;color:var(--cbre-accent);letter-spacing:.8px;margin-bottom:4px}
+.pillar-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px}
+.pillar-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.team-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:14px 18px;display:flex;align-items:center;gap:14px}
+.avatar{width:42px;height:42px;border-radius:2px;background:var(--cbre-green);border:1px solid var(--cbre-accent);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--cbre-accent);flex-shrink:0;font-family:Georgia,serif}
+.team-name{font-size:13px;font-weight:700;color:#fff}
+.team-role{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}
+.quote-block{background:var(--cbre-green);border-left:4px solid var(--cbre-accent);border-radius:0 4px 4px 0;padding:24px 28px;margin-top:24px}
+.quote-block p{font-size:15px;color:rgba(255,255,255,.85);line-height:1.75;font-style:italic;font-family:Georgia,serif}
+.quote-block .attr{font-size:11px;color:var(--cbre-accent);margin-top:10px;font-style:normal;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+
+@media(max-width:640px){
+  .charts-grid,.about-grid,.ah-stats{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .dash-hero{flex-direction:column;gap:20px}
+  .hero-kpis{margin-left:0}
+  header{padding:0 16px}
+  .view{padding:16px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-brand">
+    <div class="logo">CBRE</div>
+    <div class="logo-sub">ONE FM · ENGIE</div>
+  </div>
+  <div class="header-meta">
+    <strong>Action Tracking Dashboard</strong>
+    <span>CBRE × ENGIE Partnership Program · 180 Days</span>
+  </div>
+  <div class="hright">
+    <span class="sync-badge warn" id="syncBadge">Loading…</span>
+    <nav>
+      <button class="tab-btn active" id="tab-btn-dashboard" onclick="switchTab('dashboard')">Dashboard</button>
+      <button class="tab-btn" id="tab-btn-actions" onclick="switchTab('actions')">Actions</button>
+      <button class="tab-btn" id="tab-btn-about" onclick="switchTab('about')">About</button>
+    </nav>
+  </div>
+</header>
+
+<div id="tab-dashboard" class="view active"><div class="loading-screen"><div class="big-spin"></div><span>Loading…</span></div></div>
+<div id="tab-actions" class="view"><div class="loading-screen"><div class="big-spin"></div><span>Loading…</span></div></div>
+<div id="tab-about" class="view"></div>
+
+<!-- Modal -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">Edit Action</h2>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" id="saveBtn" onclick="saveRecord()">Save</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const STORAGE_KEY='engie_actions_v6';
+const TOPICS=['Account team','H&S','Legal','Management','Operations','Quality','Run stabilization','Sustainibility','User experience'];
+const LEADS=['CBRE','ENGIE','Both'];
+const STATUSES=['In Progress','Closed','Not Started'];
+
+const SEED=[
+  {country:'Chile',topic:'Operations',priority:2,source:'CSC',raised:'2/28/2026',action:'A lot of tickets due to comfort of user - explain the causes and take actions',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'?',ownerEngie:'',lead:'CBRE',lastUpdate:'3/16/2026',comments:[{ts:'3/16/2026',by:'System',text:'Detail review ongoing - meeting with Milagros 24/03'}],status:'Closed',blocking:''},
+  {country:'Global',topic:'Quality',priority:2,source:'CSC',raised:'2/28/2026',action:'Cleaning to put under control',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'DR',ownerEngie:'',lead:'CBRE',lastUpdate:'3/16/2026',comments:[{ts:'3/16/2026',by:'System',text:'13/04/2026 : Cedric will give feedback of the meeting'}],status:'Closed',blocking:''},
+  {country:'Mexico',topic:'Operations',priority:2,source:'CSC',raised:'2/28/2026',action:'Improve HVAC service in term of reactivity',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'',ownerEngie:'',lead:'CBRE',lastUpdate:'3/26/2026',comments:[{ts:'3/26/2026',by:'System',text:'Ongoing, plans builts country by country'}],status:'Closed',blocking:''},
+  {country:'Germany',topic:'Operations',priority:2,source:'CSC',raised:'3/19/2026',action:'Bins to be collected (20% full? => CBRE / Once a day => ENGIE), alignment must be done',targetDate:'2026-04-30',revisedTargetDate:'',ownerCBRE:'GC',ownerEngie:'',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Common inspections must be done if there are some "bad" feedback without tickets'}],status:'Closed',blocking:''},
+  {country:'Belgium / France',topic:'Operations',priority:3,source:'CSC',raised:'2/28/2026',action:'Processus de gestion des levées de réserves',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'GC',ownerEngie:'',lead:'CBRE',lastUpdate:'12/3/2026',comments:[{ts:'12/3/2026',by:'System',text:'Plan built - critical equipements targeted & parts coming in stock'}],status:'Closed',blocking:''},
+  {country:'Campus',topic:'Operations',priority:3,source:'CSC',raised:'2/28/2026',action:'Nettoyage des tickets non normalement affectés à CBRE',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'',ownerEngie:'',lead:'CBRE',lastUpdate:'3/13/2026',comments:[{ts:'3/13/2026',by:'System',text:'Operationnal but to be standardized'}],status:'Closed',blocking:''},
+  {country:'France',topic:'Operations',priority:2,source:'CSC',raised:'2/28/2026',action:'Definir la liste des asset critiques',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'',ownerEngie:'',lead:'CBRE',lastUpdate:'3/16/2026',comments:[{ts:'3/16/2026',by:'System',text:'Weekly meeting to clean the base / processus récurrent de nettoyage'}],status:'Closed',blocking:''},
+  {country:'France',topic:'Operations',priority:3,source:'CSC',raised:'2/28/2026',action:'Plan de maintenance / asset list à intégrer dans IFM Hub',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'',ownerEngie:'',lead:'CBRE',lastUpdate:'3/16/2026',comments:[{ts:'3/16/2026',by:'System',text:'For France a list exists and integrated in IFMhub.'}],status:'Closed',blocking:''},
+  {country:'Germany',topic:'Run stabilization',priority:2,source:'CSC',raised:'2/28/2026',action:'Stabilize the run to spend time on process and structural topics - stop with reactive and be more proactive',targetDate:'2026-04-30',revisedTargetDate:'',ownerCBRE:'GC',ownerEngie:'',lead:'CBRE',lastUpdate:'',comments:[{ts:'',by:'System',text:'Ongoing - Done for coming months'}],status:'Closed',blocking:''},
+  {country:'Belgium',topic:'Operations',priority:1,source:'CSC',raised:'2/28/2026',action:'Stabiliser les équipes techniques',targetDate:'2026-05-31',revisedTargetDate:'',ownerCBRE:'GC',ownerEngie:'',lead:'CBRE',lastUpdate:'',comments:[{ts:'',by:'System',text:'[CBRE] 18/03/2026 - Ongoing action plans. Action plan is closed.'}],status:'Closed',blocking:''},
+  {country:'France',topic:'Operations',priority:2,source:'CSC',raised:'2/28/2026',action:'Travailler le temps de réactivité trop long',targetDate:'2026-02-28',revisedTargetDate:'',ownerCBRE:'',ownerEngie:'',lead:'CBRE',lastUpdate:'',comments:[{ts:'',by:'System',text:'[CBRE] 13/03/2026 - Remplacer Anouar par FM + switch to SP to SPIE - Action en cours'}],status:'Closed',blocking:''},
+  {country:'Belgium',topic:'Operations',priority:2,source:'CSC',raised:'2/28/2026',action:'Coffee machine recurring problem and insatisfaction tickets from supplier',targetDate:'2026-02-28',revisedTargetDate:'',ownerCBRE:'',ownerEngie:'',lead:'CBRE',lastUpdate:'',comments:[{ts:'',by:'System',text:'[CBRE] 13/03/2026 - Weekly calls with suppliers + ENGIE SOLUTIONS to be onboarded'}],status:'Closed',blocking:''},
+  {country:'Belgium',topic:'Operations',priority:3,source:'CSC',raised:'2/28/2026',action:'Recevoir la copie du contrat BEMAC',targetDate:'2026-02-28',revisedTargetDate:'',ownerCBRE:'',ownerEngie:'',lead:'CBRE',lastUpdate:'',comments:[{ts:'',by:'System',text:'[CBRE] 13/03/2026 - Actions effectuées sur 2 à 3 machines en Belgique'}],status:'Closed',blocking:''},
+  {country:'Germany',topic:'Operations',priority:3,source:'CSC',raised:'2/28/2026',action:'Implement a structured preventive maintenance plan where currently missing',targetDate:'2026-02-28',revisedTargetDate:'',ownerCBRE:'',ownerEngie:'',lead:'CBRE',lastUpdate:'',comments:[{ts:'',by:'System',text:'[CBRE] 13/03/2026 - Gaetan renvoie les informations à Arnaud ce jour'}],status:'Closed',blocking:''},
+  {country:'Global',topic:'Quality',priority:1,source:'CSC',raised:'2/28/2026',action:'Développer les inspections qualités ENGIE suite firewall bloqué',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'CN',ownerEngie:'',lead:'ENGIE',lastUpdate:'',comments:[{ts:'',by:'System',text:'[CBRE] 13/03/2026 - Done for Coffee machine'}],status:'Closed',blocking:'YES'},
+  {country:'Germany',topic:'Run stabilization',priority:1,source:'CSC',raised:'2/28/2026',action:'Implement structured daily operational steering (vendor management + formal follow-up)',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'',ownerEngie:'',lead:'CBRE',lastUpdate:'',comments:[{ts:'',by:'System',text:'[ENGIE] 12/03/2026 - To launch - Identify a contact in ENGIE IT to help debugging'}],status:'Closed',blocking:''},
+  {country:'Germany',topic:'Run stabilization',priority:2,source:'CSC',raised:'2/28/2026',action:'Berlin and Köln alignment in termes of quality of services, process',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'GC',ownerEngie:'',lead:'Both',lastUpdate:'',comments:[{ts:'',by:'System',text:'[CBRE] 18/03/2026 - Daily monitoring CBRE x vendor'}],status:'Closed',blocking:''},
+  {country:'Germany',topic:'Run stabilization',priority:3,source:'CSC',raised:'2/28/2026',action:'Centralize Hard & Soft Services data into one reliable dashboard',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'CN',ownerEngie:'',lead:'Both',lastUpdate:'',comments:[{ts:'',by:'System',text:'[CBRE] 18/03/2026 - Quality control checklist review schedulded. Action plan Berlin is closed'}],status:'Closed',blocking:''},
+  {country:'Global',topic:'Quality',priority:3,source:'CSC',raised:'2/28/2026',action:'Implement a structured cleaning quality improvement plan (presence control + supervision)',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'',ownerEngie:'',lead:'CBRE',lastUpdate:'',comments:[{ts:'',by:'System',text:'[CBRE] 18/03/2026 - IFMHub & MyPortal operational'}],status:'Closed',blocking:''},
+  {country:'France',topic:'Operations',priority:3,source:'CSC',raised:'3/31/2026',action:'Monitor reserves following statutory controls',targetDate:'2026-06-30',revisedTargetDate:'',ownerCBRE:'David',ownerEngie:'',lead:'CBRE',lastUpdate:'',comments:[{ts:'',by:'System',text:'Country level action plans'}],status:'Closed',blocking:''},
+  {country:'France',topic:'Operations',priority:2,source:'CSC',raised:'2/28/2026',action:'Voir pour faire des tournées forfaitaires au moins une fois par an pour PET (car délais d\'interventions trop long)',targetDate:'2026-04-30',revisedTargetDate:'',ownerCBRE:'',ownerEngie:'',lead:'ENGIE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Ongoing'}],status:'In Progress',blocking:''},
+  {country:'Global',topic:'User experience',priority:2,source:'CSC',raised:'3/19/2026',action:'CBRE is expecting Data from ENGIE to perform the KPI11. ENGIE is working on the subject',targetDate:'2026-04-30',revisedTargetDate:'',ownerCBRE:'FN',ownerEngie:'',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Standardization expectations needed from ENGIE.'}],status:'In Progress',blocking:''},
+  {country:'Belgium',topic:'Operations',priority:1,source:'CSC',raised:'2/28/2026',action:'Specifics works : risk evaluation, subcontractors capabilities ; focus on emergency case',targetDate:'2026-04-30',revisedTargetDate:'',ownerCBRE:'FN',ownerEngie:'',lead:'CBRE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Implementation ongoing topic by topic.'}],status:'In Progress',blocking:''},
+  {country:'Global',topic:'H&S',priority:2,source:'CSC',raised:'2/28/2026',action:'Ensure full subcontractor compliance (documentation, induction, mandatory training)',targetDate:'2026-04-30',revisedTargetDate:'',ownerCBRE:'CN',ownerEngie:'',lead:'ENGIE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Prevention Plan launched'}],status:'In Progress',blocking:''},
+  {country:'Global',topic:'User experience',priority:2,source:'CSC',raised:'2/28/2026',action:'Finalize the satisfaction measurement framework (tool + governance)',targetDate:'2026-04-30',revisedTargetDate:'',ownerCBRE:'CN',ownerEngie:'',lead:'CBRE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Data to be shared with CBRE'}],status:'In Progress',blocking:''},
+  {country:'Chile',topic:'Operations',priority:3,source:'CSC',raised:'2/28/2026',action:'Mainly light issues (old light not LED) - working on multi annual plan',targetDate:'2026-04-30',revisedTargetDate:'',ownerCBRE:'CN',ownerEngie:'',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Plan ongoing with local team - meeting 24/03 (with Henry)'}],status:'In Progress',blocking:''},
+  {country:'Global',topic:'User experience',priority:3,source:'CSC',raised:'2/28/2026',action:'Launch a structured biannual user satisfaction survey cycle',targetDate:'2026-04-30',revisedTargetDate:'',ownerCBRE:'CN',ownerEngie:'',lead:'CBRE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'20/04/2026 : implementation into the workplan to solve the issue'}],status:'In Progress',blocking:''},
+  {country:'Mexico',topic:'Operations',priority:1,source:'CSC',raised:'3/31/2026',action:'Create a Back up process to identify and activate a Sub Contrator (if CBRE is not able to perform on time)',targetDate:'2026-04-30',revisedTargetDate:'',ownerCBRE:'Gaetan',ownerEngie:'',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Meeting schedulded'}],status:'In Progress',blocking:''},
+  {country:'Belgium',topic:'Operations',priority:3,source:'CSC',raised:'3/31/2026',action:'Valider le plan d\'action annuel avec Patrick pour les réserves',targetDate:'2026-04-30',revisedTargetDate:'',ownerCBRE:'David',ownerEngie:'',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Ongoing - local procurement team mobilized'}],status:'In Progress',blocking:''},
+  {country:'Belgium',topic:'Legal',priority:3,source:'CSC',raised:'3/31/2026',action:'LCA',targetDate:'2026-04-30',revisedTargetDate:'',ownerCBRE:'David',ownerEngie:'Jan',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Targetted May - ongoing reserves managed'}],status:'In Progress',blocking:''},
+  {country:'Global',topic:'Operations',priority:3,source:'CSC',raised:'3/31/2026',action:'Implement Monthly operations meetings at a country level (CSC = higher view)',targetDate:'2026-04-30',revisedTargetDate:'',ownerCBRE:'Cédric',ownerEngie:'Marina',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Ongoing - target date aligned with the file (May)'}],status:'In Progress',blocking:''},
+  {country:'Global',topic:'Management',priority:3,source:'CSC',raised:'3/31/2026',action:'Finalize the rating of KPI18 - data management',targetDate:'2026-04-30',revisedTargetDate:'',ownerCBRE:'Milagros',ownerEngie:'',lead:'CBRE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Launched - to be delivered'}],status:'In Progress',blocking:''},
+  {country:'Chile',topic:'Operations',priority:3,source:'CSC',raised:'3/31/2026',action:'Routine Maintenance to be improved',targetDate:'2026-02-28',revisedTargetDate:'',ownerCBRE:'DR',ownerEngie:'',lead:'CBRE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Workshop planned early May'}],status:'In Progress',blocking:''},
+  {country:'France',topic:'Operations',priority:2,source:'CSC',raised:'2/28/2026',action:'Fiabiliser les devis fournis par CBRE (prix trop élevés), aujourd\'hui trop peu challengés',targetDate:'2026-02-28',revisedTargetDate:'',ownerCBRE:'GC',ownerEngie:'',lead:'CBRE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Linked to line 50 - ongoing'}],status:'In Progress',blocking:''},
+  {country:'Germany',topic:'H&S',priority:3,source:'CSC',raised:'2/28/2026',action:'Immediately verify compliance of all annual equipment inspections (vacuum cleaners, portable electrical equipment)',targetDate:'2026-06-30',revisedTargetDate:'',ownerCBRE:'FN',ownerEngie:'',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Ongoing - optimized routine plan and round to be prepared'}],status:'In Progress',blocking:''},
+  {country:'Mexico',topic:'H&S',priority:2,source:'CSC',raised:'2/28/2026',action:'Clarify the H&S onboarding process regarding subcontractors',targetDate:'2026-04-30',revisedTargetDate:'',ownerCBRE:'FN',ownerEngie:'',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Deeper review with CBRE management support'}],status:'In Progress',blocking:''},
+  {country:'Global',topic:'H&S',priority:1,source:'CSC',raised:'2/28/2026',action:'Governance H&S – Subcontracting & Incident follow-up (+Documentation)',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'FN',ownerEngie:'',lead:'ENGIE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'- Implementer le BPU du contrat (Target March) --> 13/04/2026 : done\n- Engager des discussions avec Engie Solutions (France) --> 13/04/2026 : ongoing'}],status:'In Progress',blocking:''},
+  {country:'Belgium',topic:'Operations',priority:2,source:'CSC',raised:'2/28/2026',action:'Definir les critical asset',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'DR',ownerEngie:'',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'[CBRE] 13/03/2026 - Waiting for Klue (Karcher) documentation.'}],status:'In Progress',blocking:''},
+  {country:'Campus',topic:'Operations',priority:2,source:'CSC',raised:'2/28/2026',action:'Travailler le the file pour definir clairement le scope de service',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'DR',ownerEngie:'',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Compliant from a legal point of view - more data to be collected.'}],status:'In Progress',blocking:''},
+  {country:'Germany',topic:'Operations',priority:2,source:'CSC',raised:'2/28/2026',action:'Stabilize critical services (coffee machines, cleaning follow-up, sanitary consumables)',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'GC',ownerEngie:'',lead:'CBRE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'HSE meeting to be schedulded. CBRE Log book plan to be shared.'}],status:'In Progress',blocking:''},
+  {country:'Germany',topic:'Quality',priority:2,source:'CSC',raised:'2/28/2026',action:'Deploy ENGIE Inspections to reach more datas',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'CN',ownerEngie:'',lead:'ENGIE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'[ENGIE] Meeting to come - Caroline was asked to schedule the meeting.'}],status:'In Progress',blocking:''},
+  {country:'Global',topic:'Quality',priority:2,source:'CSC',raised:'2/28/2026',action:'Clarify evaluation methodology to eliminate perception vs. fact discussions',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'DR',ownerEngie:'',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'ENGIE 13/04/2026 : Meeting to be scheduled to explain current situation Play Book & processes'}],status:'In Progress',blocking:''},
+  {country:'Campus',topic:'Operations',priority:3,source:'CSC',raised:'2/28/2026',action:'Intégrer les plans de maintenance soft dans IFM Hub',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'CN',ownerEngie:'',lead:'CBRE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'List to align (Contact Engie sur la Belgique - Arnaud Dessy / Contact CBRE - David Rocher)'}],status:'In Progress',blocking:'YES'},
+  {country:'Global',topic:'Sustainibility',priority:3,source:'CSC',raised:'2/28/2026',action:'Sustainibility - travailler les objectifs et dashboard',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'DR',ownerEngie:'Marina',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'List proposed by CBRE'}],status:'In Progress',blocking:''},
+  {country:'Global',topic:'Account team',priority:3,source:'CSC',raised:'2/28/2026',action:'Define account team evaluation criteria and scoring methodology',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'CN',ownerEngie:'',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Caler Bruxelles en priorité / Quid de la validation Z file proposé par CBRE pour le Campus'}],status:'In Progress',blocking:''},
+  {country:'Global',topic:'Sustainibility',priority:3,source:'CSC',raised:'2/28/2026',action:'Define a sustainability roadmap (clear ownership + site-level targets)',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'CN',ownerEngie:'Marina',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'[CBRE] 18/03/2026 - Ongoing action plans. From action plan to stabilization monitoring with an FC.'}],status:'In Progress',blocking:''},
+  {country:'Global',topic:'Sustainibility',priority:3,source:'CSC',raised:'2/28/2026',action:'Formalize Data & Reporting governance (process + audit readiness)',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'CN',ownerEngie:'Marina',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'[CBRE] 18/03/2026 - Access to the app granted - still some access issue'}],status:'In Progress',blocking:''},
+  {country:'Global',topic:'Quality',priority:3,source:'CSC',raised:'3/31/2026',action:'Build a v2 of Inspection Checklist focused on operations',targetDate:'2026-05-31',revisedTargetDate:'',ownerCBRE:'Cédric',ownerEngie:'Marina',lead:'Both',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Ongoing'}],status:'In Progress',blocking:''},
+  {country:'Belgium',topic:'Operations',priority:2,source:'CSC',raised:'2/28/2026',action:'Intégration des assets et fiabilisation du plan de maintenance dans IFM Hub',targetDate:'2026-05-15',revisedTargetDate:'',ownerCBRE:'GC',ownerEngie:'',lead:'CBRE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Campus end of march 2026 - low frequencies and preventive maintenance'}],status:'In Progress',blocking:''},
+  {country:'France',topic:'Operations',priority:1,source:'CSC',raised:'2/28/2026',action:'Stabiliser les équipes avec l\'ajout d\'un FC (+ technique)',targetDate:'2026-07-31',revisedTargetDate:'',ownerCBRE:'DR',ownerEngie:'',lead:'CBRE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'13/04/2026 : integration is ongoing (by zone) - starting in September 2026'}],status:'In Progress',blocking:''},
+  {country:'Germany',topic:'Operations',priority:2,source:'CSC',raised:'2/28/2026',action:'Deploy a dedicated Local Facility Coordinator for Germany',targetDate:'2026-07-31',revisedTargetDate:'',ownerCBRE:'DR',ownerEngie:'',lead:'CBRE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'A meeting is planned end of week 16/03 between CN / ENGIE'}],status:'In Progress',blocking:''},
+  {country:'France',topic:'H&S',priority:3,source:'CSC',raised:'2/28/2026',action:'Batifire - Maximaim - plateforme de registre de sécurité des sites',targetDate:'2026-07-31',revisedTargetDate:'',ownerCBRE:'FN',ownerEngie:'Eric et Marina',lead:'ENGIE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Meeting done - roadmap ongoing'}],status:'In Progress',blocking:''},
+  {country:'Global',topic:'User experience',priority:2,source:'CSC',raised:'2/28/2026',action:'Recevoir les datas my portal pour les users satisfaction (one global dashboard)',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'CN',ownerEngie:'',lead:'ENGIE',lastUpdate:'3/13/2026',comments:[{ts:'3/13/2026',by:'System',text:'TBD'}],status:'In Progress',blocking:''},
+  {country:'Campus',topic:'Quality',priority:3,source:'CSC',raised:'2/28/2026',action:'Fusionner les controles qualités opérés dans l\'outil dalux avec inspection App pour un global tool',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'CN',ownerEngie:'',lead:'Both',lastUpdate:'3/13/2026',comments:[{ts:'3/13/2026',by:'System',text:'Wroadmap ongoing - target end of April'}],status:'In Progress',blocking:''},
+  {country:'France',topic:'Operations',priority:2,source:'CSC',raised:'2/28/2026',action:'Remote sites - enjeux de planification & accompagnants sur les sites - process à trvailler',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'FN',ownerEngie:'',lead:'CBRE',lastUpdate:'3/16/2026',comments:[{ts:'3/16/2026',by:'System',text:'Ongoing - process to optimize'}],status:'In Progress',blocking:''},
+  {country:'France',topic:'Operations',priority:2,source:'CSC',raised:'2/28/2026',action:'UG : manque de présence terrain - revoir organisation (aujourd\'hui traité comme un remote site)',targetDate:'2026-03-31',revisedTargetDate:'',ownerCBRE:'DR',ownerEngie:'',lead:'CBRE',lastUpdate:'3/16/2026',comments:[{ts:'3/16/2026',by:'System',text:'Workshop planned early May'}],status:'In Progress',blocking:''},
+  {country:'France',topic:'Operations',priority:3,source:'CSC',raised:'2/28/2026',action:'Valider la liste des asset fourni par ENGIE',targetDate:'2026-03-23',revisedTargetDate:'',ownerCBRE:'',ownerEngie:'',lead:'CBRE',lastUpdate:'4/20/2026',comments:[{ts:'4/20/2026',by:'System',text:'Ongoing - PM validés par ENGIE et CBRE - upload prévu avant fin Mars.'}],status:'Not Started',blocking:''}
+];
+
+let records=[],editingId=null,charts={},filters={q:'',status:'',country:'',priority:''};
+
+// ── Storage ──────────────────────────────────────────────────────────
+async function loadData(){
+  // Render seed data immediately so UI shows at once
+  const now=new Date();
+  records=SEED.map((r,i)=>({...r,id:i+1,
+    createdAt:new Date(now-(SEED.length-i)*2*864e5).toLocaleString(),
+    createdBy:'System (SharePoint import)',
+    updatedAt:r.lastUpdate||new Date(now-i*864e5).toLocaleDateString()
+  }));
+  render();renderAbout();
+  setSyncBadge('Syncing…','warn');
+  // Then try to load persisted data in background
+  try{
+    const res=await window.storage.get(STORAGE_KEY,true);
+    if(res&&res.value){
+      records=JSON.parse(res.value);
+      render();
+      setSyncBadge('Synced ✓','ok');
+    } else {
+      await persist();
+      setSyncBadge('Synced ✓','ok');
+    }
+  }catch{
+    setSyncBadge('Local data','warn');
+  }
+}
+async function persist(){
+  try{await window.storage.set(STORAGE_KEY,JSON.stringify(records),true);setSyncBadge('Synced ✓','ok');}
+  catch(e){setSyncBadge('Sync error ✗','err');showToast('Storage error: '+e.message,'err');}
+}
+function render(){renderDashboard();renderTable();}
+
+// ── Helpers ──────────────────────────────────────────────────────────
+function setSyncBadge(t,c){const b=document.getElementById('syncBadge');b.textContent=t;b.className='sync-badge '+c;}
+function showToast(msg,type='ok'){const t=document.getElementById('toast');t.textContent=msg;t.className='toast '+type+' show';setTimeout(()=>t.classList.remove('show'),3500);}
+function switchTab(t){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-btn-'+t).classList.add('active');
+  document.querySelectorAll('.view').forEach(v=>{v.classList.remove('active');v.style.display='none';});
+  const el=document.getElementById('tab-'+t);el.style.display='block';el.classList.add('active');
+}
+function isOverdue(r){
+  if(r.status==='Closed') return false;
+  const d=r.revisedTargetDate||r.targetDate;
+  if(!d) return false;
+  try{return new Date(d)<new Date();}catch{return false;}
+}
+function sBadge(s){
+  if(s==='Closed') return '<span class="badge b-closed">Closed</span>';
+  if(s==='Not Started') return '<span class="badge b-notstart">Not Started</span>';
+  return '<span class="badge b-inprog">In Progress</span>';
+}
+function pBadge(p){
+  if(p==1) return '<span class="badge b-p1">P1</span>';
+  if(p==2) return '<span class="badge b-p2">P2</span>';
+  if(p==3) return '<span class="badge b-p3">P3</span>';
+  return '<span class="badge" style="background:rgba(255,255,255,.05);color:var(--muted)">–</span>';
+}
+function fmtDate(d){
+  if(!d) return '–';
+  if(/^\d{4}-\d{2}-\d{2}$/.test(d)){const[y,m,dy]=d.split('-');return dy+'/'+m+'/'+y;}
+  return d;
+}
+function maxId(){return records.length?Math.max(...records.map(r=>r.id)):0;}
+
+// ── Dashboard ─────────────────────────────────────────────────────────
+function renderDashboard(){
+  const total=records.length;if(!total)return;
+  const closed=records.filter(r=>r.status==='Closed').length;
+  const inprog=records.filter(r=>r.status==='In Progress').length;
+  const notstart=records.filter(r=>r.status==='Not Started').length;
+  const blocking=records.filter(r=>r.blocking==='YES').length;
+  const p1=records.filter(r=>r.priority==1).length;
+  const overdue=records.filter(r=>isOverdue(r));
+  const overdueCount=overdue.length;
+
+  // Program progress
+  const start=new Date('2026-02-01'),end=new Date('2026-07-31'),today=new Date();
+  const totalDays=Math.round((end-start)/864e5);
+  const elapsed=Math.max(0,Math.min(totalDays,Math.round((today-start)/864e5)));
+  const pct=Math.round(elapsed/totalDays*100);
+
+  // Overdue pills (up to 5 examples)
+  const overduePills=overdue.slice(0,4).map(r=>`<span class="overdue-pill">#${r.id} · ${r.country}</span>`).join('');
+  const moreTag=overdue.length>4?`<span class="overdue-pill">+${overdue.length-4} more</span>`:'';
+
+  document.getElementById('tab-dashboard').innerHTML=`
+    <div class="dash-hero">
+      <div class="hero-text">
+        <div class="hero-tag">CBRE × ENGIE · Partnership Program</div>
+        <h1>Action Tracking Dashboard</h1>
+        <p>180-day structured initiative to strengthen the CBRE–ENGIE partnership and optimize the management of ENGIE buildings worldwide.</p>
+      </div>
+      <div class="hero-kpis">
+        <div class="hero-stat"><div class="hbig">${elapsed}</div><div class="unit">Days Elapsed</div></div>
+        <div class="hero-stat"><div class="hbig">${pct}%</div><div class="unit">Progress</div></div>
+        <div class="hero-stat"><div class="hbig">${Math.round(closed/total*100)}%</div><div class="unit">Close Rate</div></div>
+      </div>
+    </div>
+
+    ${overdueCount>0?`
+    <div class="overdue-banner">
+      <div class="overdue-icon">⚠</div>
+      <div class="overdue-text">
+        <strong>${overdueCount} Overdue Action${overdueCount>1?'s':''}</strong>
+        <p>Past target date — requires immediate attention or revised date</p>
+      </div>
+      <div class="overdue-pills">${overduePills}${moreTag}</div>
+    </div>`:''}
+
+    <div class="kpi-row">
+      <div class="kpi" style="--kpi-color:var(--cbre-accent)"><div class="num">${total}</div><div class="lbl">Total Actions</div></div>
+      <div class="kpi" style="--kpi-color:#AD2A2A"><div class="num" style="color:#ff9090">${overdueCount}</div><div class="lbl">Overdue</div><div class="sub">↑ Needs attention</div></div>
+      <div class="kpi" style="--kpi-color:var(--cbre-accent)"><div class="num">${closed}</div><div class="lbl">Closed</div></div>
+      <div class="kpi" style="--kpi-color:#3E7CA6"><div class="num" style="color:#7ab8f5">${inprog}</div><div class="lbl">In Progress</div></div>
+      <div class="kpi" style="--kpi-color:var(--cbre-wheat)"><div class="num" style="color:var(--cbre-wheat)">${notstart}</div><div class="lbl">Not Started</div></div>
+      <div class="kpi" style="--kpi-color:#AD2A2A"><div class="num" style="color:#ff9090">${blocking}</div><div class="lbl">Blocking Points</div></div>
+    </div>
+
+    <div class="section-hdr"><h2>Analytics</h2><div class="section-line"></div></div>
+    <div class="charts-grid">
+      <div class="chart-card"><div class="chart-title">Status breakdown</div><div class="chart-wrap"><canvas id="cStatus" role="img" aria-label="Status breakdown donut chart"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">Actions by country</div><div class="chart-wrap"><canvas id="cCountry" role="img" aria-label="Actions by country bar chart"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">Actions by topic</div><div class="chart-wrap"><canvas id="cTopic" role="img" aria-label="Actions by topic bar chart"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">Priority distribution</div><div class="chart-wrap"><canvas id="cPrio" role="img" aria-label="Priority distribution chart"></canvas></div></div>
+    </div>`;
+
+  Object.keys(charts).forEach(k=>{try{charts[k].destroy();}catch{}delete charts[k];});
+
+  const gridColor='rgba(23,232,143,.08)',tickColor='#538184';
+
+  charts.cStatus=new Chart(document.getElementById('cStatus'),{type:'doughnut',
+    data:{labels:['Closed','In Progress','Not Started'],datasets:[{data:[closed,inprog,notstart],backgroundColor:['#003F2D','#3E7CA6','#538184'],borderColor:['#17E88F','#7ab8f5','#DBD99A'],borderWidth:2}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:tickColor,font:{size:11},boxWidth:12,padding:14}}}}});
+
+  const cMap={};records.forEach(r=>{cMap[r.country]=(cMap[r.country]||0)+1;});
+  const cK=Object.keys(cMap).sort((a,b)=>cMap[b]-cMap[a]);
+  charts.cCountry=new Chart(document.getElementById('cCountry'),{type:'bar',
+    data:{labels:cK,datasets:[{data:cK.map(k=>cMap[k]),backgroundColor:'#003F2D',borderColor:'#17E88F',borderWidth:1,borderRadius:2,hoverBackgroundColor:'#17E88F'}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tickColor,font:{size:10}},grid:{color:gridColor}},y:{ticks:{color:tickColor,stepSize:1},grid:{color:gridColor}}}}});
+
+  const tMap={};records.forEach(r=>{tMap[r.topic]=(tMap[r.topic]||0)+1;});
+  const tK=Object.keys(tMap).sort((a,b)=>tMap[b]-tMap[a]);
+  charts.cTopic=new Chart(document.getElementById('cTopic'),{type:'bar',
+    data:{labels:tK,datasets:[{data:tK.map(k=>tMap[k]),backgroundColor:'#012A2D',borderColor:'#80BBAD',borderWidth:1,borderRadius:2,hoverBackgroundColor:'#80BBAD'}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tickColor,font:{size:10}},grid:{color:gridColor}},y:{ticks:{color:tickColor,stepSize:1},grid:{color:gridColor}}}}});
+
+  const p1c=records.filter(r=>r.priority==1).length,p2=records.filter(r=>r.priority==2).length,p3=records.filter(r=>r.priority==3).length,p0=records.filter(r=>!r.priority||r.priority==0).length;
+  charts.cPrio=new Chart(document.getElementById('cPrio'),{type:'doughnut',
+    data:{labels:['P1 – Critical','P2 – High','P3 – Medium','No priority'],datasets:[{data:[p1c,p2,p3,p0],backgroundColor:['#AD2A2A','#538184','#003F2D','#435254'],borderColor:['#ff9090','#DBD99A','#17E88F','#7F8480'],borderWidth:2}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:tickColor,font:{size:11},boxWidth:12,padding:14}}}}});
+}
+
+// ── Table ─────────────────────────────────────────────────────────────
+function renderTable(){
+  const countries=[...new Set(records.map(r=>r.country))].sort();
+  const filtered=records.filter(r=>{
+    if(filters.status&&r.status!==filters.status)return false;
+    if(filters.country&&r.country!==filters.country)return false;
+    if(filters.priority&&String(r.priority)!==filters.priority)return false;
+    if(filters.q&&!JSON.stringify(r).toLowerCase().includes(filters.q.toLowerCase()))return false;
+    return true;
+  });
+  document.getElementById('tab-actions').innerHTML=`
+    <div class="table-toolbar">
+      <input type="text" id="tSearch" placeholder="Search actions…" value="${filters.q.replace(/"/g,'&quot;')}"/>
+      <select id="tStatus"><option value="">All statuses</option>${STATUSES.map(s=>`<option ${filters.status===s?'selected':''}>${s}</option>`).join('')}</select>
+      <select id="tCountry"><option value="">All countries</option>${countries.map(c=>`<option ${filters.country===c?'selected':''}>${c}</option>`).join('')}</select>
+      <select id="tPriority"><option value="">All priorities</option><option value="1" ${filters.priority==='1'?'selected':''}>P1 – Critical</option><option value="2" ${filters.priority==='2'?'selected':''}>P2 – High</option><option value="3" ${filters.priority==='3'?'selected':''}>P3 – Medium</option></select>
+      <button class="btn-add" onclick="openModal(null)">+ New Action</button>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr>
+        <th>#</th><th>Country</th><th>Topic</th><th>Pri.</th>
+        <th style="min-width:220px">Action Required</th>
+        <th>Target Date</th><th>Revised Date</th>
+        <th>Owner CBRE</th><th>Owner Engie</th><th>Lead</th>
+        <th>Status</th><th>Blocking</th><th>Last Update</th><th>Created</th><th>Created By</th><th></th>
+      </tr></thead>
+      <tbody>${filtered.map(r=>{const od=isOverdue(r);return`<tr class="${od?'tr-overdue':''}">
+        <td style="color:var(--muted);font-size:11px">${r.id}${od?' <span class="b-overdue badge">!</span>':''}</td>
+        <td style="white-space:nowrap;font-size:12px">${r.country}</td>
+        <td style="white-space:nowrap;font-size:12px">${r.topic}</td>
+        <td>${pBadge(r.priority)}</td>
+        <td style="max-width:260px;font-size:12px;line-height:1.4">${r.action}</td>
+        <td style="white-space:nowrap;font-size:12px">${fmtDate(r.targetDate)}</td>
+        <td style="white-space:nowrap;font-size:12px;color:${r.revisedTargetDate?'var(--cbre-wheat)':'var(--muted)'}">${r.revisedTargetDate?fmtDate(r.revisedTargetDate):'–'}</td>
+        <td style="white-space:nowrap;font-size:12px">${r.ownerCBRE||'–'}</td>
+        <td style="white-space:nowrap;font-size:12px">${r.ownerEngie||'–'}</td>
+        <td style="white-space:nowrap;font-size:12px">${r.lead||'–'}</td>
+        <td>${sBadge(r.status)}</td>
+        <td>${r.blocking==='YES'?'<span class="badge b-block">YES</span>':'–'}</td>
+        <td style="white-space:nowrap;font-size:11px;color:var(--muted)">${r.updatedAt||'–'}</td>
+        <td style="white-space:nowrap;font-size:11px;color:var(--muted)">${r.createdAt||'–'}</td>
+        <td style="font-size:11px;color:var(--cbre-sage);white-space:nowrap">${r.createdBy||'–'}</td>
+        <td><button class="btn-edit" onclick="openModal(${r.id})">Edit</button></td>
+      </tr>`;}).join('')}
+      </tbody>
+    </table></div>`;
+  document.getElementById('tSearch').addEventListener('input',e=>{filters.q=e.target.value;renderTable();});
+  document.getElementById('tStatus').addEventListener('change',e=>{filters.status=e.target.value;renderTable();});
+  document.getElementById('tCountry').addEventListener('change',e=>{filters.country=e.target.value;renderTable();});
+  document.getElementById('tPriority').addEventListener('change',e=>{filters.priority=e.target.value;renderTable();});
+}
+
+// ── About ─────────────────────────────────────────────────────────────
+function renderAbout(){
+  const start=new Date('2026-02-01'),end=new Date('2026-07-31'),today=new Date();
+  const totalDays=Math.round((end-start)/864e5);
+  const elapsed=Math.max(0,Math.min(totalDays,Math.round((today-start)/864e5)));
+  const pct=Math.round(elapsed/totalDays*100);
+  document.getElementById('tab-about').innerHTML=`
+  <div class="about-wrap">
+    <div class="about-hero">
+      <div class="ah-tag">CBRE × ENGIE · ONE FM Partnership</div>
+      <div class="ah-title">Action Tracking Program</div>
+      <p class="ah-desc">A 180-day structured initiative to strengthen the CBRE–ENGIE partnership, mitigate operational issues, and put permanent solutions in place to optimize the management of ENGIE buildings worldwide.</p>
+      <div class="ah-stats">
+        <div class="ah-stat"><div class="big">180</div><div class="unit">Day Program</div></div>
+        <div class="ah-stat"><div class="big">${records.length}</div><div class="unit">Total Actions</div></div>
+        <div class="ah-stat"><div class="big">${[...new Set(records.map(r=>r.country))].length}</div><div class="unit">Countries</div></div>
+        <div class="ah-stat"><div class="big">${pct}%</div><div class="unit">Progress</div></div>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>The Challenge</h3>
+        <ul>
+          <li>Operational issues across multiple countries impacting service quality and client satisfaction</li>
+          <li>Unclear ownership and accountability between CBRE and ENGIE teams</li>
+          <li>Reactive work culture — recurring problems without permanent fixes</li>
+          <li>Gaps in asset management, maintenance planning, and quality controls</li>
+          <li>H&S compliance risks with subcontractors and local regulations</li>
+        </ul>
+      </div>
+      <div class="about-card">
+        <h3>What We Are Fixing</h3>
+        <ul>
+          <li>Clear ownership — every action has a named CBRE and ENGIE owner</li>
+          <li>Permanent solutions — root-cause fixes, not repeated incident responses</li>
+          <li>Structured governance — regular CSC reviews and escalation processes</li>
+          <li>Asset management maturity — IFM Hub integration and maintenance plans</li>
+          <li>Quality & sustainability — inspection frameworks and reporting dashboards</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <h2>Program Timeline</h2>
+      <div class="tl-wrap">
+        <div class="tl-item"><div class="tl-dot active"></div>
+          <div class="tl-phase">Phase 1 · Days 1–60 · Feb – Mar 2026</div>
+          <div class="tl-title">Baseline & Mobilization</div>
+          <div class="tl-desc">Identify all open issues, assign ownership, establish governance cadence and CSC review process. Baseline all KPIs.</div>
+        </div>
+        <div class="tl-item"><div class="tl-dot active"></div>
+          <div class="tl-phase">Phase 2 · Days 61–120 · Apr – May 2026</div>
+          <div class="tl-title">Execution & Enforcement</div>
+          <div class="tl-desc">Close quick wins, implement structural fixes, enforce quality standards. Reduce blocking points and escalate overdue actions.</div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-phase">Phase 3 · Days 121–180 · Jun – Jul 2026</div>
+          <div class="tl-title">Optimization & Steady State</div>
+          <div class="tl-desc">Embed permanent operational improvements, validate sustainability of fixes, and transition to standard operating practice.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <h2>Program Scope</h2>
+      <div class="pillars">
+        <div class="pillar"><div class="pillar-num">01</div><div class="pillar-title">Operations</div><div class="pillar-desc">Asset management, maintenance planning, service delivery quality and reactive work reduction.</div></div>
+        <div class="pillar"><div class="pillar-num">02</div><div class="pillar-title">Health & Safety</div><div class="pillar-desc">Subcontractor compliance, incident follow-up, H&S documentation and onboarding processes.</div></div>
+        <div class="pillar"><div class="pillar-num">03</div><div class="pillar-title">Quality</div><div class="pillar-desc">Inspection frameworks, quality control tools, evaluation methodologies and cleaning standards.</div></div>
+        <div class="pillar"><div class="pillar-num">04</div><div class="pillar-title">User Experience</div><div class="pillar-desc">User satisfaction measurement, portal data sharing and biannual survey framework.</div></div>
+        <div class="pillar"><div class="pillar-num">05</div><div class="pillar-title">Sustainability</div><div class="pillar-desc">Sustainability roadmap, site-level targets, data governance and reporting compliance.</div></div>
+        <div class="pillar"><div class="pillar-num">06</div><div class="pillar-title">Run Stabilization</div><div class="pillar-desc">Germany-focused stabilization of vendor management, dashboard centralization and local FM deployment.</div></div>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <h2>Program Leadership</h2>
+      <div class="team-grid">
+        <div class="team-card"><div class="avatar">CN</div><div><div class="team-name">Cédric Nicard</div><div class="team-role">Program Lead · CBRE</div></div></div>
+        <div class="team-card"><div class="avatar">AC</div><div><div class="team-name">Ana Caetano</div><div class="team-role">Program Coordinator · CBRE</div></div></div>
+        <div class="team-card"><div class="avatar">GC</div><div><div class="team-name">Gaetan C.</div><div class="team-role">Operations Lead · CBRE</div></div></div>
+        <div class="team-card"><div class="avatar">FN</div><div><div class="team-name">FN</div><div class="team-role">H&S & Quality Lead · CBRE</div></div></div>
+        <div class="team-card"><div class="avatar">DR</div><div><div class="team-name">David R.</div><div class="team-role">Country Delivery · CBRE</div></div></div>
+        <div class="team-card"><div class="avatar">M</div><div><div class="team-name">Marina</div><div class="team-role">Program Lead · ENGIE</div></div></div>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <h2>Guiding Principles</h2>
+      <div class="about-card">
+        <ul>
+          <li>Every action has a named owner — no unassigned items</li>
+          <li>Permanent fixes, not repeated incident responses</li>
+          <li>Both CBRE and ENGIE are accountable — we win or lose together</li>
+          <li>Transparency first — issues surfaced early are problems solved faster</li>
+          <li>Data-driven decisions — KPIs and dashboards guide prioritization</li>
+          <li>Continuous improvement — every closed action feeds into the next phase</li>
+        </ul>
+      </div>
+      <div class="quote-block">
+        <p>"We don't win by reacting faster to the same problems — we win by making them impossible to repeat. This program exists to build the foundations of a lasting, high-performing partnership between CBRE and ENGIE."</p>
+        <div class="attr">— ONE FM ENGIE Program Charter, 2026</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── Modal ─────────────────────────────────────────────────────────────
+function openModal(id){
+  editingId=id;const isNew=!id;
+  document.getElementById('modalTitle').textContent=isNew?'New Action':'Edit Action #'+id;
+  const r=isNew?null:records.find(x=>x.id===id);
+  const countries=[...new Set(records.map(r=>r.country))].sort();
+  const body=document.getElementById('modalBody');
+  if(isNew){
+    body.innerHTML=`
+      <div class="sec">Action details</div>
+      <div class="form-row">
+        <div class="form-group"><label>Country *</label>
+          <select id="f-country"><option value="">Select…</option>${countries.map(c=>`<option>${c}</option>`).join('')}<option value="__new__">+ Other country…</option></select>
+          <input id="f-country-new" type="text" placeholder="Enter country name" style="display:none;margin-top:6px"/>
+        </div>
+        <div class="form-group"><label>Topic *</label>
+          <select id="f-topic"><option value="">Select…</option>${TOPICS.map(t=>`<option>${t}</option>`).join('')}</select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Priority</label>
+          <select id="f-priority"><option value="0">–</option><option value="1">P1 – Critical</option><option value="2">P2 – High</option><option value="3">P3 – Medium</option></select>
+        </div>
+        <div class="form-group"><label>Target due date</label><input id="f-target" type="date"/></div>
+      </div>
+      <div class="form-group"><label>Action required *</label><textarea id="f-action" rows="3" placeholder="Describe the action…"></textarea></div>
+      <div class="sec">Ownership & Status</div>
+      <div class="form-row">
+        <div class="form-group"><label>Owner CBRE</label><input id="f-ownerCBRE" type="text" placeholder="Initials or name"/></div>
+        <div class="form-group"><label>Owner Engie</label><input id="f-ownerEngie" type="text" placeholder="Initials or name"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Lead</label><select id="f-lead"><option value="">–</option>${LEADS.map(l=>`<option>${l}</option>`).join('')}</select></div>
+        <div class="form-group"><label>Status</label><select id="f-status">${STATUSES.map(s=>`<option>${s}</option>`).join('')}</select></div>
+      </div>
+      <div class="form-group" style="max-width:50%"><label>Blocking point</label><select id="f-blocking"><option value="">No</option><option value="YES">YES</option></select></div>
+      <div class="sec">Created by *</div>
+      <div class="form-group" style="max-width:50%"><label>Your name</label><input id="f-createdby" type="text" placeholder="Full name"/></div>`;
+    document.getElementById('f-country').onchange=function(){document.getElementById('f-country-new').style.display=this.value==='__new__'?'block':'none';};
+  } else {
+    const prev=r.comments.filter(c=>c.text).length
+      ?r.comments.filter(c=>c.text).map(c=>`<div class="comment-entry"><div class="comment-meta">${c.ts}${c.by?' · '+c.by:''}</div>${c.text}</div>`).join('')
+      :'<span style="color:var(--muted);font-size:12px">No comments yet</span>';
+    body.innerHTML=`
+      <div class="sec">Read-only fields</div>
+      <div class="form-row">
+        <div class="form-group"><label>Country</label><div class="ro-field">${r.country}</div></div>
+        <div class="form-group"><label>Topic</label><div class="ro-field">${r.topic}</div></div>
+      </div>
+      <div class="form-group"><label>Action required</label>
+        <div class="ro-field" style="max-height:80px;overflow-y:auto;font-size:12px;white-space:pre-wrap;line-height:1.5">${r.action}</div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Original target date <span style="color:var(--cbre-sage);font-size:9px;text-transform:none;letter-spacing:0">(locked)</span></label>
+          <div class="ro-field" style="color:var(--cbre-accent)">${fmtDate(r.targetDate)}</div>
+        </div>
+        <div class="form-group"><label>Revised target date</label><input id="f-revised" type="date" value="${r.revisedTargetDate||''}"/></div>
+      </div>
+      <div class="sec">Editable fields</div>
+      <div class="form-row">
+        <div class="form-group"><label>Status</label><select id="f-status">${STATUSES.map(s=>`<option ${r.status===s?'selected':''}>${s}</option>`).join('')}</select></div>
+        <div class="form-group"><label>Priority</label>
+          <select id="f-priority"><option value="0" ${!r.priority?'selected':''}>–</option><option value="1" ${r.priority==1?'selected':''}>P1 – Critical</option><option value="2" ${r.priority==2?'selected':''}>P2 – High</option><option value="3" ${r.priority==3?'selected':''}>P3 – Medium</option></select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Owner CBRE</label><input id="f-ownerCBRE" type="text" value="${r.ownerCBRE||''}"/></div>
+        <div class="form-group"><label>Owner Engie</label><input id="f-ownerEngie" type="text" value="${r.ownerEngie||''}"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Lead</label><select id="f-lead"><option value="">–</option>${LEADS.map(l=>`<option ${r.lead===l?'selected':''}>${l}</option>`).join('')}</select></div>
+        <div class="form-group"><label>Blocking point</label><select id="f-blocking"><option value="" ${r.blocking!=='YES'?'selected':''}>No</option><option value="YES" ${r.blocking==='YES'?'selected':''}>YES</option></select></div>
+      </div>
+      <div class="sec">Comments <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;color:var(--muted)">(append-only)</span></div>
+      <div class="prev-comments">${prev}</div>
+      <div class="form-group"><label>Add new comment</label><textarea id="f-comment" rows="3" placeholder="Type a comment…"></textarea></div>
+      <div class="form-group" style="max-width:50%"><label>Your name *</label><input id="f-commenter" type="text" placeholder="Full name"/></div>
+      <div style="font-size:11px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">
+        Created: <strong style="color:var(--text)">${r.createdAt||'–'}</strong> by <strong style="color:var(--text)">${r.createdBy||'–'}</strong>
+        &nbsp;·&nbsp; Last updated: <strong style="color:var(--text)">${r.updatedAt||'–'}</strong>
+      </div>`;
+  }
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal(){document.getElementById('modal').classList.remove('open');editingId=null;}
+
+async function saveRecord(){
+  const btn=document.getElementById('saveBtn');
+  btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Saving…';
+  const ts=new Date().toLocaleString();
+  try{
+    if(!editingId){
+      let country=document.getElementById('f-country').value;
+      if(country==='__new__') country=(document.getElementById('f-country-new').value||'').trim();
+      const action=(document.getElementById('f-action').value||'').trim();
+      const by=(document.getElementById('f-createdby').value||'').trim();
+      const topic=document.getElementById('f-topic').value;
+      if(!country){showToast('Please select or enter a country.','err');return;}
+      if(!topic){showToast('Please select a topic.','err');return;}
+      if(!action){showToast('Action required field cannot be empty.','err');return;}
+      if(!by){showToast('Please enter your name.','err');return;}
+      records.push({id:maxId()+1,country,topic,priority:parseInt(document.getElementById('f-priority').value)||0,
+        source:'Dashboard',raised:new Date().toLocaleDateString(),action,
+        targetDate:document.getElementById('f-target').value||'',revisedTargetDate:'',
+        ownerCBRE:document.getElementById('f-ownerCBRE').value.trim(),
+        ownerEngie:document.getElementById('f-ownerEngie').value.trim(),
+        lead:document.getElementById('f-lead').value,status:document.getElementById('f-status').value,
+        blocking:document.getElementById('f-blocking').value,
+        comments:[],createdAt:ts,createdBy:by,updatedAt:ts,lastUpdate:ts});
+    } else {
+      const r=records.find(x=>x.id===editingId);
+      const commenter=(document.getElementById('f-commenter').value||'').trim();
+      const comment=(document.getElementById('f-comment').value||'').trim();
+      if(comment&&!commenter){showToast('Please enter your name to add a comment.','err');return;}
+      r.status=document.getElementById('f-status').value;
+      r.priority=parseInt(document.getElementById('f-priority').value)||0;
+      r.ownerCBRE=document.getElementById('f-ownerCBRE').value.trim();
+      r.ownerEngie=document.getElementById('f-ownerEngie').value.trim();
+      r.lead=document.getElementById('f-lead').value;
+      r.blocking=document.getElementById('f-blocking').value;
+      const rev=document.getElementById('f-revised').value;
+      if(rev) r.revisedTargetDate=rev;
+      if(comment) r.comments.push({ts:new Date().toLocaleString(),by:commenter,text:comment});
+      r.updatedAt=ts;r.lastUpdate=ts;
+    }
+    await persist();
+    closeModal();
+    showToast('Saved successfully ✓','ok');
+    render();
+  } finally{btn.disabled=false;btn.textContent='Save';}
+}
+
+loadData();
+</script>
+</body>
+</html>
