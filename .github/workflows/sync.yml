@@ -1,4 +1,5 @@
-yamlname: Sync Smartsheet → actions.json
+yaml
+name: Sync Smartsheet → actions.json
 
 on:
   workflow_dispatch:
