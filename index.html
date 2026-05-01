@@ -33,7 +33,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,sans-serif;font-size:14px;background:var(--bg);color:var(--text);min-height:100vh}
-
+ 
 /* ── Header ────────────────────────────────────────────────────────── */
 header{
   background:var(--cbre-green);
@@ -68,10 +68,10 @@ nav{display:flex;gap:0;height:100%}
 }
 .tab-btn.active{color:#fff;border-bottom-color:var(--cbre-accent)}
 .tab-btn:hover:not(.active){color:rgba(255,255,255,.9);background:rgba(255,255,255,.06)}
-
+ 
 /* ── Views ─────────────────────────────────────────────────────────── */
 .view{display:none;padding:28px 32px}.view.active{display:block}
-
+ 
 /* ── Hero strip (dashboard) ─────────────────────────────────────────── */
 .dash-hero{
   background:linear-gradient(135deg,var(--cbre-green) 0%,var(--cbre-dark-green) 100%);
@@ -88,7 +88,7 @@ nav{display:flex;gap:0;height:100%}
 .hero-stat{text-align:center}
 .hero-stat .hbig{font-size:38px;font-weight:800;color:var(--cbre-accent);line-height:1;font-family:Georgia,serif}
 .hero-stat .hunit{font-size:11px;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.5px}
-
+ 
 /* ── KPI Grid ───────────────────────────────────────────────────────── */
 .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px;margin-bottom:24px}
 .kpi{
@@ -99,18 +99,18 @@ nav{display:flex;gap:0;height:100%}
 .kpi .num{font-size:30px;font-weight:800;color:var(--kpi-color,var(--cbre-accent));line-height:1;margin-bottom:4px;font-family:Georgia,serif}
 .kpi .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;font-weight:600}
 .kpi .sub{font-size:10px;color:var(--cbre-accent);margin-top:3px;font-weight:600}
-
+ 
 /* ── Section header ─────────────────────────────────────────────────── */
 .section-hdr{display:flex;align-items:center;gap:12px;margin-bottom:16px}
 .section-hdr h2{font-size:13px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:1px}
 .section-line{flex:1;height:1px;background:var(--border)}
-
+ 
 /* ── Charts ─────────────────────────────────────────────────────────── */
 .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
 .chart-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:20px}
 .chart-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px}
 .chart-wrap{position:relative;height:200px}
-
+ 
 /* ── Overdue banner ─────────────────────────────────────────────────── */
 .overdue-banner{
   background:rgba(173,42,42,.12);border:1px solid rgba(173,42,42,.4);border-left:4px solid #AD2A2A;
@@ -122,7 +122,7 @@ nav{display:flex;gap:0;height:100%}
 .overdue-text p{font-size:12px;color:rgba(255,144,144,.7);margin-top:2px}
 .overdue-pills{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
 .overdue-pill{background:rgba(173,42,42,.2);border:1px solid rgba(173,42,42,.4);color:#ff9090;font-size:11px;font-weight:600;padding:3px 10px;border-radius:2px;white-space:nowrap}
-
+ 
 /* ── Table ───────────────────────────────────────────────────────────── */
 .table-toolbar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
 .table-toolbar input,.table-toolbar select{
@@ -150,7 +150,7 @@ td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top;color
 tr:hover td{background:rgba(23,232,143,.04)}
 .tr-overdue td{background:rgba(173,42,42,.06)}
 .tr-overdue:hover td{background:rgba(173,42,42,.1)}
-
+ 
 /* ── Badges ──────────────────────────────────────────────────────────── */
 .badge{display:inline-block;padding:2px 8px;border-radius:2px;font-size:11px;font-weight:700;white-space:nowrap;letter-spacing:.3px}
 .b-closed{background:rgba(0,63,45,.6);color:var(--cbre-accent);border:1px solid rgba(23,232,143,.3)}
@@ -163,7 +163,7 @@ tr:hover td{background:rgba(23,232,143,.04)}
 .b-p3{background:rgba(128,187,173,.1);color:var(--cbre-celadon);border:1px solid rgba(128,187,173,.3)}
 .btn-edit{background:transparent;border:1px solid var(--border2);color:var(--muted);padding:4px 10px;border-radius:2px;cursor:pointer;font-size:11px;font-weight:600}
 .btn-edit:hover{background:var(--cbre-accent);color:var(--cbre-green);border-color:var(--cbre-accent)}
-
+ 
 /* ── Modal ───────────────────────────────────────────────────────────── */
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:100;align-items:center;justify-content:center;padding:20px}
 .modal-bg.open{display:flex}
@@ -195,7 +195,7 @@ tr:hover td{background:rgba(23,232,143,.04)}
 .btn-save:hover{background:#45EDA5}.btn-cancel:hover{color:#fff;border-color:#fff}
 .btn-save:disabled{opacity:.5;cursor:not-allowed}
 .sec{font-size:10px;font-weight:700;color:var(--cbre-accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);margin-top:4px}
-
+ 
 /* ── Toast ───────────────────────────────────────────────────────────── */
 .toast{position:fixed;bottom:24px;right:24px;padding:12px 20px;border-radius:2px;font-size:13px;font-weight:700;z-index:300;transform:translateY(80px);opacity:0;transition:all .3s;max-width:340px;border-left:3px solid}
 .toast.ok{background:#012a1e;color:var(--cbre-accent);border-color:var(--cbre-accent)}
@@ -206,7 +206,7 @@ tr:hover td{background:rgba(23,232,143,.04)}
 @keyframes spin{to{transform:rotate(360deg)}}
 .big-spin{width:28px;height:28px;border:3px solid rgba(23,232,143,.15);border-top-color:var(--cbre-accent);border-radius:50%;animation:spin .7s linear infinite}
 .loading-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:14px;color:var(--muted)}
-
+ 
 /* ── About ───────────────────────────────────────────────────────────── */
 .about-wrap{max-width:900px;margin:0 auto}
 .about-hero{
@@ -252,7 +252,7 @@ tr:hover td{background:rgba(23,232,143,.04)}
 .quote-block{background:var(--cbre-green);border-left:4px solid var(--cbre-accent);border-radius:0 4px 4px 0;padding:24px 28px;margin-top:24px}
 .quote-block p{font-size:15px;color:rgba(255,255,255,.85);line-height:1.75;font-style:italic;font-family:Georgia,serif}
 .quote-block .attr{font-size:11px;color:var(--cbre-accent);margin-top:10px;font-style:normal;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
-
+ 
 @media(max-width:640px){
   .charts-grid,.about-grid,.ah-stats{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
@@ -264,7 +264,7 @@ tr:hover td{background:rgba(23,232,143,.04)}
 </style>
 </head>
 <body>
-
+ 
 <header>
   <div class="header-brand">
     <div class="logo">CBRE</div>
@@ -284,11 +284,11 @@ tr:hover td{background:rgba(23,232,143,.04)}
     </nav>
   </div>
 </header>
-
+ 
 <div id="tab-dashboard" class="view active"><div class="loading-screen"><div class="big-spin"></div><span>Loading…</span></div></div>
 <div id="tab-actions" class="view"><div class="loading-screen"><div class="big-spin"></div><span>Loading…</span></div></div>
 <div id="tab-about" class="view"></div>
-
+ 
 <!-- Modal -->
 <div class="modal-bg" id="modal">
   <div class="modal">
@@ -304,32 +304,39 @@ tr:hover td{background:rgba(23,232,143,.04)}
   </div>
 </div>
 <div class="toast" id="toast"></div>
-
+ 
 <script>
 const STORAGE_KEY='engie_actions_v6';
 const TOPICS=['Account team','H&S','Legal','Management','Operations','Quality','Run stabilization','Sustainibility','User experience'];
 const LEADS=['CBRE','ENGIE','Both'];
 const STATUSES=['In Progress','Closed','Not Started'];
-
-
-
+ 
+ 
+ 
 let records=[],editingId=null,charts={},filters={q:'',status:'',country:'',priority:''};
-
-// ── Storage ──────────────────────────────────────────────────────────
+ 
+// ── Storage (localStorage) ───────────────────────────────────────────
+function storageSave(data){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}
+  catch(e){console.warn('localStorage save failed:',e);}
+}
+function storageLoad(){
+  try{const v=localStorage.getItem(STORAGE_KEY);return v?JSON.parse(v):null;}
+  catch{return null;}
+}
+ 
 async function loadData(){
-  setSyncBadge('Syncing…','warn');
+  setSyncBadge('Loading…','warn');
   renderAbout();
-  // 1. Try persisted (user edits) first
-  try{
-    const res=await window.storage.get(STORAGE_KEY,true);
-    if(res&&res.value){
-      records=JSON.parse(res.value);
-      render();
-      setSyncBadge('Synced ✓','ok');
-      return;
-    }
-  }catch(e){/* storage unavailable, fall through */}
-  // 2. Load from actions.json (Smartsheet sync)
+  // 1. Try persisted local edits first
+  const saved=storageLoad();
+  if(saved&&saved.length){
+    records=saved;
+    render();
+    setSyncBadge('Loaded ✓','ok');
+    return;
+  }
+  // 2. Load from actions.json (Smartsheet sync output)
   try{
     const resp=await fetch('actions.json?t='+Date.now());
     if(!resp.ok) throw new Error('HTTP '+resp.status);
@@ -342,23 +349,22 @@ async function loadData(){
       createdAt: r.createdAt || now.toLocaleString(),
       updatedAt: r.updatedAt || r.lastUpdate || now.toLocaleDateString(),
     }));
-    await persist();
+    persist();
     render();
     setSyncBadge('Synced ✓','ok');
   }catch(e){
-    // actions.json not yet created — start with empty list and prompt user to sync
     records=[];
     render();
     setSyncBadge('No data — sync needed','warn');
-    showToast('No actions.json found. Click ⟳ Sync Smartsheet to load data.','warn');
+    showToast('Click ⟳ Sync Smartsheet to load data.','warn');
   }
 }
-async function persist(){
-  try{await window.storage.set(STORAGE_KEY,JSON.stringify(records),true);setSyncBadge('Synced ✓','ok');}
-  catch(e){setSyncBadge('Sync error ✗','err');showToast('Storage error: '+e.message,'err');}
+function persist(){
+  storageSave(records);
+  setSyncBadge('Saved ✓','ok');
 }
 function render(){renderDashboard();renderTable();}
-
+ 
 // ── Helpers ──────────────────────────────────────────────────────────
 function setSyncBadge(t,c){const b=document.getElementById('syncBadge');b.textContent=t;b.className='sync-badge '+c;}
 function showToast(msg,type='ok'){const t=document.getElementById('toast');t.textContent=msg;t.className='toast '+type+' show';setTimeout(()=>t.classList.remove('show'),3500);}
@@ -391,7 +397,7 @@ function fmtDate(d){
   return d;
 }
 function maxId(){return records.length?Math.max(...records.map(r=>r.id)):0;}
-
+ 
 // ── Dashboard ─────────────────────────────────────────────────────────
 function renderDashboard(){
   const total=records.length;if(!total)return;
@@ -402,17 +408,17 @@ function renderDashboard(){
   const p1=records.filter(r=>r.priority==1).length;
   const overdue=records.filter(r=>isOverdue(r));
   const overdueCount=overdue.length;
-
+ 
   // Program progress
   const start=new Date('2026-02-01'),end=new Date('2026-07-31'),today=new Date();
   const totalDays=Math.round((end-start)/864e5);
   const elapsed=Math.max(0,Math.min(totalDays,Math.round((today-start)/864e5)));
   const pct=Math.round(elapsed/totalDays*100);
-
+ 
   // Overdue pills (up to 5 examples)
   const overduePills=overdue.slice(0,4).map(r=>`<span class="overdue-pill">#${r.id} · ${r.country}</span>`).join('');
   const moreTag=overdue.length>4?`<span class="overdue-pill">+${overdue.length-4} more</span>`:'';
-
+ 
   document.getElementById('tab-dashboard').innerHTML=`
     <div class="dash-hero">
       <div class="hero-text">
@@ -426,7 +432,7 @@ function renderDashboard(){
         <div class="hero-stat"><div class="hbig">${Math.round(closed/total*100)}%</div><div class="unit">Close Rate</div></div>
       </div>
     </div>
-
+ 
     ${overdueCount>0?`
     <div class="overdue-banner">
       <div class="overdue-icon">⚠</div>
@@ -436,7 +442,7 @@ function renderDashboard(){
       </div>
       <div class="overdue-pills">${overduePills}${moreTag}</div>
     </div>`:''}
-
+ 
     <div class="kpi-row">
       <div class="kpi" style="--kpi-color:var(--cbre-accent)"><div class="num">${total}</div><div class="lbl">Total Actions</div></div>
       <div class="kpi" style="--kpi-color:#AD2A2A"><div class="num" style="color:#ff9090">${overdueCount}</div><div class="lbl">Overdue</div><div class="sub">↑ Needs attention</div></div>
@@ -445,7 +451,7 @@ function renderDashboard(){
       <div class="kpi" style="--kpi-color:var(--cbre-wheat)"><div class="num" style="color:var(--cbre-wheat)">${notstart}</div><div class="lbl">Not Started</div></div>
       <div class="kpi" style="--kpi-color:#AD2A2A"><div class="num" style="color:#ff9090">${blocking}</div><div class="lbl">Blocking Points</div></div>
     </div>
-
+ 
     <div class="section-hdr"><h2>Analytics</h2><div class="section-line"></div></div>
     <div class="charts-grid">
       <div class="chart-card"><div class="chart-title">Status breakdown</div><div class="chart-wrap"><canvas id="cStatus" role="img" aria-label="Status breakdown donut chart"></canvas></div></div>
@@ -453,33 +459,33 @@ function renderDashboard(){
       <div class="chart-card"><div class="chart-title">Actions by topic</div><div class="chart-wrap"><canvas id="cTopic" role="img" aria-label="Actions by topic bar chart"></canvas></div></div>
       <div class="chart-card"><div class="chart-title">Priority distribution</div><div class="chart-wrap"><canvas id="cPrio" role="img" aria-label="Priority distribution chart"></canvas></div></div>
     </div>`;
-
+ 
   Object.keys(charts).forEach(k=>{try{charts[k].destroy();}catch{}delete charts[k];});
-
+ 
   const gridColor='rgba(23,232,143,.08)',tickColor='#538184';
-
+ 
   charts.cStatus=new Chart(document.getElementById('cStatus'),{type:'doughnut',
     data:{labels:['Closed','In Progress','Not Started'],datasets:[{data:[closed,inprog,notstart],backgroundColor:['#003F2D','#3E7CA6','#538184'],borderColor:['#17E88F','#7ab8f5','#DBD99A'],borderWidth:2}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:tickColor,font:{size:11},boxWidth:12,padding:14}}}}});
-
+ 
   const cMap={};records.forEach(r=>{cMap[r.country]=(cMap[r.country]||0)+1;});
   const cK=Object.keys(cMap).sort((a,b)=>cMap[b]-cMap[a]);
   charts.cCountry=new Chart(document.getElementById('cCountry'),{type:'bar',
     data:{labels:cK,datasets:[{data:cK.map(k=>cMap[k]),backgroundColor:'#003F2D',borderColor:'#17E88F',borderWidth:1,borderRadius:2,hoverBackgroundColor:'#17E88F'}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tickColor,font:{size:10}},grid:{color:gridColor}},y:{ticks:{color:tickColor,stepSize:1},grid:{color:gridColor}}}}});
-
+ 
   const tMap={};records.forEach(r=>{tMap[r.topic]=(tMap[r.topic]||0)+1;});
   const tK=Object.keys(tMap).sort((a,b)=>tMap[b]-tMap[a]);
   charts.cTopic=new Chart(document.getElementById('cTopic'),{type:'bar',
     data:{labels:tK,datasets:[{data:tK.map(k=>tMap[k]),backgroundColor:'#012A2D',borderColor:'#80BBAD',borderWidth:1,borderRadius:2,hoverBackgroundColor:'#80BBAD'}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tickColor,font:{size:10}},grid:{color:gridColor}},y:{ticks:{color:tickColor,stepSize:1},grid:{color:gridColor}}}}});
-
+ 
   const p1c=records.filter(r=>r.priority==1).length,p2=records.filter(r=>r.priority==2).length,p3=records.filter(r=>r.priority==3).length,p0=records.filter(r=>!r.priority||r.priority==0).length;
   charts.cPrio=new Chart(document.getElementById('cPrio'),{type:'doughnut',
     data:{labels:['P1 – Critical','P2 – High','P3 – Medium','No priority'],datasets:[{data:[p1c,p2,p3,p0],backgroundColor:['#AD2A2A','#538184','#003F2D','#435254'],borderColor:['#ff9090','#DBD99A','#17E88F','#7F8480'],borderWidth:2}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:tickColor,font:{size:11},boxWidth:12,padding:14}}}}});
 }
-
+ 
 // ── Table ─────────────────────────────────────────────────────────────
 function renderTable(){
   const countries=[...new Set(records.map(r=>r.country))].sort();
@@ -531,7 +537,7 @@ function renderTable(){
   document.getElementById('tCountry').addEventListener('change',e=>{filters.country=e.target.value;renderTable();});
   document.getElementById('tPriority').addEventListener('change',e=>{filters.priority=e.target.value;renderTable();});
 }
-
+ 
 // ── About ─────────────────────────────────────────────────────────────
 function renderAbout(){
   const start=new Date('2026-02-01'),end=new Date('2026-07-31'),today=new Date();
@@ -551,7 +557,7 @@ function renderAbout(){
         <div class="ah-stat"><div class="big">${pct}%</div><div class="unit">Progress</div></div>
       </div>
     </div>
-
+ 
     <div class="about-grid">
       <div class="about-card">
         <h3>The Challenge</h3>
@@ -574,7 +580,7 @@ function renderAbout(){
         </ul>
       </div>
     </div>
-
+ 
     <div class="about-section">
       <h2>Program Timeline</h2>
       <div class="tl-wrap">
@@ -595,7 +601,7 @@ function renderAbout(){
         </div>
       </div>
     </div>
-
+ 
     <div class="about-section">
       <h2>Program Scope</h2>
       <div class="pillars">
@@ -607,7 +613,7 @@ function renderAbout(){
         <div class="pillar"><div class="pillar-num">06</div><div class="pillar-title">Run Stabilization</div><div class="pillar-desc">Germany-focused stabilization of vendor management, dashboard centralization and local FM deployment.</div></div>
       </div>
     </div>
-
+ 
     <div class="about-section">
       <h2>Program Leadership</h2>
       <div class="team-grid">
@@ -619,7 +625,7 @@ function renderAbout(){
         <div class="team-card"><div class="avatar">M</div><div><div class="team-name">Marina</div><div class="team-role">Program Lead · ENGIE</div></div></div>
       </div>
     </div>
-
+ 
     <div class="about-section">
       <h2>Guiding Principles</h2>
       <div class="about-card">
@@ -639,7 +645,7 @@ function renderAbout(){
     </div>
   </div>`;
 }
-
+ 
 // ── Modal ─────────────────────────────────────────────────────────────
 function openModal(id){
   editingId=id;const isNew=!id;
@@ -724,9 +730,9 @@ function openModal(id){
   }
   document.getElementById('modal').classList.add('open');
 }
-
+ 
 function closeModal(){document.getElementById('modal').classList.remove('open');editingId=null;}
-
+ 
 async function saveRecord(){
   const btn=document.getElementById('saveBtn');
   btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Saving…';
@@ -766,18 +772,18 @@ async function saveRecord(){
       if(comment) r.comments.push({ts:new Date().toLocaleString(),by:commenter,text:comment});
       r.updatedAt=ts;r.lastUpdate=ts;
     }
-    await persist();
+    persist();
     closeModal();
     showToast('Saved successfully ✓','ok');
     render();
   } finally{btn.disabled=false;btn.textContent='Save';}
 }
-
+ 
 // ── Smartsheet Sync (triggers GitHub Actions workflow) ───────────────
 const GH_REPO     = 'cbre-vantage-studio/engie';
 const GH_WORKFLOW = 'sync.yml';
 const GH_PAT      = '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';
-
+ 
 async function triggerSmartsheetSync(){
   const btn=document.getElementById('syncBtn');
   btn.disabled=true;
@@ -816,15 +822,14 @@ async function triggerSmartsheetSync(){
           }));
           // Preserve local comments
           try{
-            const stored=await window.storage.get(STORAGE_KEY,true);
-            if(stored&&stored.value){
-              const prev=JSON.parse(stored.value);
+            const prev=storageLoad();
+            if(prev){
               const prevMap=Object.fromEntries(prev.map(r=>[r.id,r]));
               fresh.forEach(r=>{if(prevMap[r.id])r.comments=prevMap[r.id].comments;});
             }
           }catch{}
           records=fresh;
-          await persist();
+          persist();
           render();
           setSyncBadge('Synced ✓','ok');
           showToast('Dashboard updated with latest Smartsheet data ✓','ok');
@@ -850,7 +855,7 @@ async function triggerSmartsheetSync(){
     btn.textContent='⟳ Sync Smartsheet';
   }
 }
-
+ 
 loadData();
 </script>
 </body>
