@@ -797,7 +797,7 @@ async function triggerSmartsheetSync(){
       },
       body:JSON.stringify({trigger:true}),
     });
-        if(res.status===204){
+        if(res.status===200||res.status===204){
       setSyncBadge('Sync running…','warn');
       showToast('Smartsheet sync started — dashboard will refresh in ~35 seconds.','ok');
       btn.textContent='⟳ Syncing…';
