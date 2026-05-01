@@ -1,4 +1,3 @@
-yaml
 name: Sync Smartsheet → actions.json
 
 on:
