@@ -1,0 +1,34 @@
+yamlname: Sync Smartsheet → actions.json
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run sync script
+        env:
+          SMARTSHEET_API_TOKEN: ${{ secrets.SMARTSHEET_API_TOKEN }}
+        run: python sync_smartsheet.py
+
+      - name: Commit & push actions.json
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add actions.json
+          git diff --cached --quiet && echo "No changes to commit" || \
+            git commit -m "chore: sync actions from Smartsheet [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+          git pushSonnet 4.6
