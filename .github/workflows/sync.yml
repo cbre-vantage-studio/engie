@@ -31,4 +31,4 @@ jobs:
           git add actions.json
           git diff --cached --quiet && echo "No changes to commit" || \
             git commit -m "chore: sync actions from Smartsheet [$(date -u '+%Y-%m-%d %H:%M UTC')]"
-          git pushSonnet 4.6
+          git push
