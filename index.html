@@ -739,6 +739,7 @@ async function saveRecord(){
   const ts=new Date().toLocaleString();
   try{
     if(!editingId){
+      // ── New action: write directly to Smartsheet via Worker ──
       let country=document.getElementById('f-country').value;
       if(country==='__new__') country=(document.getElementById('f-country-new').value||'').trim();
       const action=(document.getElementById('f-action').value||'').trim();
@@ -748,15 +749,57 @@ async function saveRecord(){
       if(!topic){showToast('Please select a topic.','err');return;}
       if(!action){showToast('Action required field cannot be empty.','err');return;}
       if(!by){showToast('Please enter your name.','err');return;}
-      records.push({id:maxId()+1,country,topic,priority:parseInt(document.getElementById('f-priority').value)||0,
-        source:'Dashboard',raised:new Date().toLocaleDateString(),action,
-        targetDate:document.getElementById('f-target').value||'',revisedTargetDate:'',
+ 
+      const newRecord={
+        country,topic,
+        priority:parseInt(document.getElementById('f-priority').value)||0,
+        source:'Dashboard',
+        raised:new Date().toLocaleDateString(),
+        action,
+        targetDate:document.getElementById('f-target').value||'',
+        revisedTargetDate:'',
         ownerCBRE:document.getElementById('f-ownerCBRE').value.trim(),
         ownerEngie:document.getElementById('f-ownerEngie').value.trim(),
-        lead:document.getElementById('f-lead').value,status:document.getElementById('f-status').value,
+        lead:document.getElementById('f-lead').value,
+        status:document.getElementById('f-status').value,
         blocking:document.getElementById('f-blocking').value,
-        comments:[],createdAt:ts,createdBy:by,updatedAt:ts,lastUpdate:ts});
+        createdBy:by,
+      };
+ 
+      showToast('Creating row in Smartsheet…','warn');
+      let resp;
+      try{
+        resp=await fetch(WORKER_URL,{
+          method:'POST',
+          headers:{'Content-Type':'application/json','X-Sync-Secret':SYNC_SECRET},
+          body:JSON.stringify({action:'create_row',record:newRecord}),
+        });
+      }catch(e){
+        showToast('Network error: could not reach sync service.','err');
+        return;
+      }
+ 
+      if(!resp.ok){
+        const err=await resp.json().catch(()=>({}));
+        showToast('Smartsheet error: '+(err.error||resp.status),'err');
+        return;
+      }
+ 
+      const result=await resp.json();
+      // Add to local cache immediately so it shows without waiting for next sync
+      records.push({
+        ...newRecord,
+        id:result.rowNumber||(maxId()+1),
+        comments:[],createdAt:ts,updatedAt:ts,lastUpdate:ts,
+      });
+      persist();
+      closeModal();
+      showToast('Action created in Smartsheet ✓','ok');
+      render();
+      return;
+ 
     } else {
+      // ── Edit action: update local cache only ──
       const r=records.find(x=>x.id===editingId);
       const commenter=(document.getElementById('f-commenter').value||'').trim();
       const comment=(document.getElementById('f-comment').value||'').trim();
