@@ -786,6 +786,7 @@ async function saveRecord(){
       }
  
       const result=await resp.json();
+      console.log('[Engie Sync] Worker response:', JSON.stringify(result, null, 2));
       // Add to local cache immediately so it shows without waiting for next sync
       records.push({
         ...newRecord,
