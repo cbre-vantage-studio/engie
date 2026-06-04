@@ -9,7 +9,7 @@
     "action": "A lot of tickets due to comfort of user - explain the causes and take actions",
     "targetDate": "2026-03-31",
     "revisedTargetDate": "",
-    "ownerCBRE": "",
+    "ownerCBRE": "MC",
     "ownerEngie": "",
     "lead": "CBRE",
     "lastUpdate": "2026-03-16",
@@ -17,8 +17,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 2,
@@ -29,17 +29,17 @@
     "raised": "2026-03-31",
     "action": "Finalize the rating of KPI18 - data management",
     "targetDate": "2026-04-30",
-    "revisedTargetDate": "",
+    "revisedTargetDate": "2026-06-30",
     "ownerCBRE": "CN",
-    "ownerEngie": "Marina",
+    "ownerEngie": "MA",
     "lead": "Both",
     "lastUpdate": "2026-04-20",
     "status": "In Progress",
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 3,
@@ -49,18 +49,18 @@
     "source": "1 - CSC",
     "raised": "2026-03-31",
     "action": "Build a v2 of Inspection Checklist focused on operations",
-    "targetDate": "2026-05-31",
-    "revisedTargetDate": "",
+    "targetDate": "2026-06-30",
+    "revisedTargetDate": "2026-06-30",
     "ownerCBRE": "CN",
-    "ownerEngie": "Marina",
+    "ownerEngie": "MA",
     "lead": "Both",
-    "lastUpdate": "2026-04-20",
+    "lastUpdate": "2026-05-21",
     "status": "In Progress",
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 4,
@@ -80,13 +80,13 @@
     "blocking": "YES",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 5,
     "country": "Germany",
-    "topic": "Run stabilization",
+    "topic": "Operations",
     "priority": 3,
     "source": "1 - CSC",
     "raised": "2026-02-28",
@@ -101,8 +101,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 6,
@@ -115,15 +115,15 @@
     "targetDate": "2026-04-30",
     "revisedTargetDate": "",
     "ownerCBRE": "CN",
-    "ownerEngie": "",
+    "ownerEngie": "MA",
     "lead": "ENGIE",
     "lastUpdate": "2026-04-20",
     "status": "In Progress",
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 7,
@@ -133,7 +133,7 @@
     "source": "1 - CSC",
     "raised": "2026-02-28",
     "action": "Mainly light issues (old light not LED) - working on multi annual plan",
-    "targetDate": "2026-04-30",
+    "targetDate": "2026-06-30",
     "revisedTargetDate": "",
     "ownerCBRE": "CN",
     "ownerEngie": "",
@@ -143,8 +143,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 8,
@@ -154,18 +154,18 @@
     "source": "1 - CSC",
     "raised": "2026-02-28",
     "action": "Launch a structured biannual user satisfaction survey cycle.",
-    "targetDate": "2026-04-30",
+    "targetDate": "2026-06-30",
     "revisedTargetDate": "",
     "ownerCBRE": "CN",
-    "ownerEngie": "",
+    "ownerEngie": "MA",
     "lead": "Both",
     "lastUpdate": "2026-04-20",
     "status": "In Progress",
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 9,
@@ -185,8 +185,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 10,
@@ -199,15 +199,15 @@
     "targetDate": "2026-03-31",
     "revisedTargetDate": "",
     "ownerCBRE": "CN",
-    "ownerEngie": "",
+    "ownerEngie": "SAD",
     "lead": "ENGIE",
-    "lastUpdate": "2026-04-20",
-    "status": "In Progress",
+    "lastUpdate": "2026-05-20",
+    "status": "Closed",
     "blocking": "YES",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 11,
@@ -227,8 +227,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 12,
@@ -244,12 +244,12 @@
     "ownerEngie": "",
     "lead": "Both",
     "lastUpdate": "2026-04-20",
-    "status": "In Progress",
+    "status": "Closed",
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 13,
@@ -269,8 +269,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 14,
@@ -283,15 +283,15 @@
     "targetDate": "2026-03-31",
     "revisedTargetDate": "",
     "ownerCBRE": "CN",
-    "ownerEngie": "Marina",
+    "ownerEngie": "MA",
     "lead": "Both",
     "lastUpdate": "2026-04-20",
     "status": "In Progress",
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 15,
@@ -311,8 +311,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 16,
@@ -332,8 +332,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 17,
@@ -353,8 +353,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 18,
@@ -365,7 +365,7 @@
     "raised": "2026-03-31",
     "action": "LCA",
     "targetDate": "2026-04-30",
-    "revisedTargetDate": "",
+    "revisedTargetDate": "2026-06-30",
     "ownerCBRE": "DR",
     "ownerEngie": "",
     "lead": "Both",
@@ -374,8 +374,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 19,
@@ -388,15 +388,15 @@
     "targetDate": "2026-04-30",
     "revisedTargetDate": "",
     "ownerCBRE": "DR",
-    "ownerEngie": "Jan",
+    "ownerEngie": "JVB",
     "lead": "Both",
     "lastUpdate": "2026-04-20",
     "status": "In Progress",
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 20,
@@ -416,8 +416,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 21,
@@ -437,8 +437,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 22,
@@ -458,8 +458,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 23,
@@ -475,12 +475,12 @@
     "ownerEngie": "",
     "lead": "Both",
     "lastUpdate": "2026-04-20",
-    "status": "In Progress",
+    "status": "Closed",
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 24,
@@ -500,8 +500,8 @@
     "blocking": "YES",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 25,
@@ -521,8 +521,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 26,
@@ -535,15 +535,15 @@
     "targetDate": "2026-03-31",
     "revisedTargetDate": "",
     "ownerCBRE": "DR",
-    "ownerEngie": "Marina",
+    "ownerEngie": "MA",
     "lead": "Both",
     "lastUpdate": "2026-04-20",
     "status": "In Progress",
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 27,
@@ -563,8 +563,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 28,
@@ -575,17 +575,17 @@
     "raised": "2026-02-28",
     "action": "Deploy a dedicated Local Facility Coordinator for Germany.",
     "targetDate": "2026-07-31",
-    "revisedTargetDate": "",
+    "revisedTargetDate": "2026-09-01",
     "ownerCBRE": "DR",
     "ownerEngie": "",
     "lead": "CBRE",
     "lastUpdate": "2026-04-20",
-    "status": "In Progress",
+    "status": "Closed",
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 29,
@@ -601,12 +601,12 @@
     "ownerEngie": "",
     "lead": "CBRE",
     "lastUpdate": "2026-03-16",
-    "status": "In Progress",
+    "status": "Closed",
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 30,
@@ -617,7 +617,7 @@
     "raised": "2026-02-28",
     "action": "Specifics works : risk evaluation, subcontractors capabilities ; focus on emergency case",
     "targetDate": "2026-04-30",
-    "revisedTargetDate": "",
+    "revisedTargetDate": "2026-06-16",
     "ownerCBRE": "FN",
     "ownerEngie": "",
     "lead": "Both",
@@ -626,8 +626,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 31,
@@ -647,8 +647,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 32,
@@ -668,8 +668,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 33,
@@ -689,8 +689,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 34,
@@ -710,8 +710,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 35,
@@ -731,8 +731,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 36,
@@ -743,17 +743,17 @@
     "raised": "2026-03-31",
     "action": "Valider le plan d'action annuel avec Patrick pour les réserves",
     "targetDate": "2026-04-30",
-    "revisedTargetDate": "",
+    "revisedTargetDate": "2026-06-30",
     "ownerCBRE": "GC",
     "ownerEngie": "",
     "lead": "Both",
-    "lastUpdate": "2026-04-20",
+    "lastUpdate": "2026-05-26",
     "status": "In Progress",
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 37,
@@ -773,8 +773,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 38,
@@ -794,13 +794,13 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 39,
     "country": "Germany",
-    "topic": "Run stabilization",
+    "topic": "Operations",
     "priority": 2,
     "source": "1 - CSC",
     "raised": "2026-02-28",
@@ -815,8 +815,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 40,
@@ -836,13 +836,13 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 41,
     "country": "Germany",
-    "topic": "Run stabilization",
+    "topic": "Operations",
     "priority": 2,
     "source": "1 - CSC",
     "raised": "2026-02-28",
@@ -857,8 +857,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 42,
@@ -874,12 +874,12 @@
     "ownerEngie": "",
     "lead": "CBRE",
     "lastUpdate": "2026-04-20",
-    "status": "In Progress",
+    "status": "Closed",
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 43,
@@ -899,8 +899,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 44,
@@ -915,13 +915,13 @@
     "ownerCBRE": "GC",
     "ownerEngie": "",
     "lead": "CBRE",
-    "lastUpdate": "2026-04-20",
+    "lastUpdate": "2026-05-26",
     "status": "In Progress",
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 45,
@@ -933,7 +933,7 @@
     "action": "Routine Maintenance to be improved",
     "targetDate": "2026-04-30",
     "revisedTargetDate": "",
-    "ownerCBRE": "Milagros",
+    "ownerCBRE": "MC",
     "ownerEngie": "",
     "lead": "CBRE",
     "lastUpdate": "2026-04-20",
@@ -941,8 +941,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 46,
@@ -954,7 +954,7 @@
     "action": "Improve HVAC service in term of reactivity",
     "targetDate": "2026-03-31",
     "revisedTargetDate": "",
-    "ownerCBRE": "",
+    "ownerCBRE": "EM",
     "ownerEngie": "",
     "lead": "CBRE",
     "lastUpdate": "2026-03-26",
@@ -962,8 +962,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 47,
@@ -975,7 +975,7 @@
     "action": "Nettoyage des tickets non normalement affectés à CBRE",
     "targetDate": "2026-03-31",
     "revisedTargetDate": "",
-    "ownerCBRE": "",
+    "ownerCBRE": "TB",
     "ownerEngie": "",
     "lead": "CBRE",
     "lastUpdate": "2026-03-13",
@@ -983,8 +983,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 48,
@@ -1004,8 +1004,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 49,
@@ -1025,8 +1025,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 50,
@@ -1046,8 +1046,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 51,
@@ -1067,8 +1067,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 52,
@@ -1088,8 +1088,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 53,
@@ -1109,13 +1109,13 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 54,
     "country": "Germany",
-    "topic": "Run stabilization",
+    "topic": "Operations",
     "priority": 1,
     "source": "1 - CSC",
     "raised": "2026-02-28",
@@ -1130,8 +1130,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 55,
@@ -1143,7 +1143,7 @@
     "action": "Implement a structured cleaning quality improvement plan (presence control + supervision).",
     "targetDate": "2026-03-31",
     "revisedTargetDate": "",
-    "ownerCBRE": "",
+    "ownerCBRE": "TB",
     "ownerEngie": "",
     "lead": "CBRE",
     "lastUpdate": "2026-03-31",
@@ -1151,8 +1151,8 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 56,
@@ -1163,17 +1163,17 @@
     "raised": "2026-03-19",
     "action": "CBRE is expecting Data from ENGIE to perform the KPI11. ENGIE is working on the subject",
     "targetDate": "2026-04-30",
-    "revisedTargetDate": "",
-    "ownerCBRE": "",
-    "ownerEngie": "",
+    "revisedTargetDate": "2026-05-31",
+    "ownerCBRE": "CN",
+    "ownerEngie": "JVB",
     "lead": "ENGIE",
     "lastUpdate": "2026-04-20",
     "status": "In Progress",
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   },
   {
     "id": 57,
@@ -1185,7 +1185,7 @@
     "action": "Valider la liste des asset fourni par ENGIE",
     "targetDate": "2026-03-23",
     "revisedTargetDate": "",
-    "ownerCBRE": "",
+    "ownerCBRE": "DR",
     "ownerEngie": "",
     "lead": "CBRE",
     "lastUpdate": "2026-04-20",
@@ -1193,7 +1193,616 @@
     "blocking": "",
     "createdBy": "",
     "comments": [],
-    "createdAt": "2026-05-12T16:11:43Z",
-    "updatedAt": "2026-05-12T16:11:43Z"
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 58,
+    "country": "Campus",
+    "topic": "Operations",
+    "priority": 1,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Cleaning Campus define perimeter/expectations - LCA",
+    "targetDate": "2026-05-31",
+    "revisedTargetDate": "",
+    "ownerCBRE": "TB",
+    "ownerEngie": "PAP",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 59,
+    "country": "Campus",
+    "topic": "Operations",
+    "priority": 1,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Cleaning Campus propose specifications V2",
+    "targetDate": "2026-05-31",
+    "revisedTargetDate": "",
+    "ownerCBRE": "TB",
+    "ownerEngie": "PAP",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 60,
+    "country": "Campus",
+    "topic": "Operations",
+    "priority": 1,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Cleaning Campus méthodology",
+    "targetDate": "2026-05-31",
+    "revisedTargetDate": "",
+    "ownerCBRE": "TB",
+    "ownerEngie": "",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 61,
+    "country": "Germany",
+    "topic": "Operations",
+    "priority": 1,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Cologne : improve quality performance",
+    "targetDate": "2026-06-30",
+    "revisedTargetDate": "",
+    "ownerCBRE": "GC/DR",
+    "ownerEngie": "SAD",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 62,
+    "country": "Campus",
+    "topic": "Management",
+    "priority": 2,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Improve decision making",
+    "targetDate": "2026-05-15",
+    "revisedTargetDate": "",
+    "ownerCBRE": "TB/DR",
+    "ownerEngie": "PAP/AH",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 63,
+    "country": "Global",
+    "topic": "Operations",
+    "priority": 2,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Improve MyPortal Worflow vs API interface",
+    "targetDate": "2026-05-31",
+    "revisedTargetDate": "",
+    "ownerCBRE": "CN/DR",
+    "ownerEngie": "IT/JVB",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 64,
+    "country": "Global",
+    "topic": "Operations",
+    "priority": 3,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Improve catalogue performance",
+    "targetDate": "2026-05-31",
+    "revisedTargetDate": "",
+    "ownerCBRE": "CN/DR",
+    "ownerEngie": "IT/JVB",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 65,
+    "country": "France",
+    "topic": "Management",
+    "priority": 1,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Hiring a FC/FM resource",
+    "targetDate": "2026-07-31",
+    "revisedTargetDate": "",
+    "ownerCBRE": "DR",
+    "ownerEngie": "JVB",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 66,
+    "country": "Global",
+    "topic": "Management",
+    "priority": 3,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Training FC",
+    "targetDate": "2026-05-31",
+    "revisedTargetDate": "",
+    "ownerCBRE": "DR/GR",
+    "ownerEngie": "",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "Closed",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 67,
+    "country": "Global",
+    "topic": "Quality",
+    "priority": 1,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Deploy inspections Gen 2",
+    "targetDate": "2026-07-31",
+    "revisedTargetDate": "",
+    "ownerCBRE": "CN",
+    "ownerEngie": "MA",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 68,
+    "country": "Global",
+    "topic": "Operations",
+    "priority": 1,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Deploy Webquote",
+    "targetDate": "2026-05-31",
+    "revisedTargetDate": "",
+    "ownerCBRE": "CN",
+    "ownerEngie": "MA",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 69,
+    "country": "Global",
+    "topic": "Operations",
+    "priority": 2,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Finalize IFMhub set up",
+    "targetDate": "2026-05-31",
+    "revisedTargetDate": "",
+    "ownerCBRE": "CN",
+    "ownerEngie": "JVB",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 70,
+    "country": "Global",
+    "topic": "Operations",
+    "priority": 2,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Deploy new IT pack (Tech App, Rail, Flow, …)",
+    "targetDate": "",
+    "revisedTargetDate": "2026-06-30",
+    "ownerCBRE": "GR",
+    "ownerEngie": "",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 71,
+    "country": "Global",
+    "topic": "Finance",
+    "priority": 1,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Forecast 26 after Landing on Germany and Belgium changes",
+    "targetDate": "2026-06-15",
+    "revisedTargetDate": "",
+    "ownerCBRE": "DR",
+    "ownerEngie": "JVB",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 72,
+    "country": "Global",
+    "topic": "Account team",
+    "priority": 1,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Implement new governance on local MM",
+    "targetDate": "2026-05-31",
+    "revisedTargetDate": "",
+    "ownerCBRE": "DR",
+    "ownerEngie": "MA",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 73,
+    "country": "Global",
+    "topic": "Account team",
+    "priority": 2,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Role&Responsibilities Matrix CBRE/local Team",
+    "targetDate": "2026-06-30",
+    "revisedTargetDate": "",
+    "ownerCBRE": "DR",
+    "ownerEngie": "MA",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "Not Started",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 74,
+    "country": "LATAM",
+    "topic": "Management",
+    "priority": 3,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Improve dedicated support given to Chile/Mexico",
+    "targetDate": "2026-05-31",
+    "revisedTargetDate": "2026-06-12",
+    "ownerCBRE": "GR/CN",
+    "ownerEngie": "",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 75,
+    "country": "Global",
+    "topic": "Operations",
+    "priority": 3,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Integrate Engie Solutions as a key partner",
+    "targetDate": "2026-10-30",
+    "revisedTargetDate": "",
+    "ownerCBRE": "GR/DR",
+    "ownerEngie": "BO",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 76,
+    "country": "Global",
+    "topic": "Account team",
+    "priority": 3,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Global RE FM side services (PJM, Advisory,…)",
+    "targetDate": "",
+    "revisedTargetDate": "",
+    "ownerCBRE": "GR",
+    "ownerEngie": "",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 77,
+    "country": "Global",
+    "topic": "Account team",
+    "priority": 3,
+    "source": "2 - QBR",
+    "raised": "2026-04-28",
+    "action": "Wave 2 to drive the vision for IFM",
+    "targetDate": "",
+    "revisedTargetDate": "",
+    "ownerCBRE": "GR",
+    "ownerEngie": "",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 78,
+    "country": "France",
+    "topic": "Operations",
+    "priority": 1,
+    "source": "3 - COR",
+    "raised": "2026-05-19",
+    "action": "A/C leak testing : Make an Offer for France sites and adjust initial budget",
+    "targetDate": "2026-06-19",
+    "revisedTargetDate": "",
+    "ownerCBRE": "DR",
+    "ownerEngie": "",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "david rocher",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 79,
+    "country": "France",
+    "topic": "Operations",
+    "priority": 2,
+    "source": "3 - COR",
+    "raised": "2026-05-19",
+    "action": "potability check :1 per machine  vs 1 per site : Make an Offer for France sites and adjust initial budget",
+    "targetDate": "2026-06-19",
+    "revisedTargetDate": "",
+    "ownerCBRE": "DR",
+    "ownerEngie": "",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "david rocher",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 80,
+    "country": "France",
+    "topic": "Operations",
+    "priority": 1,
+    "source": "3 - COR",
+    "raised": "2026-05-19",
+    "action": "Reconcile tickets between IFMhub and My Portal do identify any gaps",
+    "targetDate": "2026-06-19",
+    "revisedTargetDate": "",
+    "ownerCBRE": "DR",
+    "ownerEngie": "MT/RC",
+    "lead": "Both",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "david rocher",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 81,
+    "country": "France",
+    "topic": "Operations",
+    "priority": 2,
+    "source": "3 - COR",
+    "raised": "2026-05-19",
+    "action": "Clearly indicate Archiving rules  for Report on Engie Sharepoint.",
+    "targetDate": "2026-06-19",
+    "revisedTargetDate": "",
+    "ownerCBRE": "FN",
+    "ownerEngie": "MA",
+    "lead": "Both",
+    "lastUpdate": "",
+    "status": "Closed",
+    "blocking": "",
+    "createdBy": "david rocher",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 82,
+    "country": "Germany",
+    "topic": "Operations",
+    "priority": 2,
+    "source": "1 - CSC",
+    "raised": "2026-05-20",
+    "action": "Clarify the maintenance plan for coffee machines",
+    "targetDate": "2026-06-21",
+    "revisedTargetDate": "",
+    "ownerCBRE": "GC",
+    "ownerEngie": "",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 83,
+    "country": "Belgium",
+    "topic": "Finance",
+    "priority": 1,
+    "source": "1 - CSC",
+    "raised": "2026-05-26",
+    "action": "Unpaid invoices to solve",
+    "targetDate": "2026-06-30",
+    "revisedTargetDate": "",
+    "ownerCBRE": "JM",
+    "ownerEngie": "Vincent",
+    "lead": "ENGIE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 84,
+    "country": "Belgium",
+    "topic": "Legal",
+    "priority": 1,
+    "source": "1 - CSC",
+    "raised": "2026-05-26",
+    "action": "Oxy solution to finalize",
+    "targetDate": "2026-06-30",
+    "revisedTargetDate": "",
+    "ownerCBRE": "GR",
+    "ownerEngie": "MA",
+    "lead": "Both",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": 85,
+    "country": "Belgium",
+    "topic": "Operations",
+    "priority": 2,
+    "source": "1 - CSC",
+    "raised": "2026-05-26",
+    "action": "Above base backlog to clean",
+    "targetDate": "2026-06-30",
+    "revisedTargetDate": "",
+    "ownerCBRE": "GC",
+    "ownerEngie": "",
+    "lead": "CBRE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
+  },
+  {
+    "id": "",
+    "country": "Campus",
+    "topic": "Finance",
+    "priority": 2,
+    "source": "4 - Other",
+    "raised": "2026-01-02",
+    "action": "Offer evaluation",
+    "targetDate": "2026-06-30",
+    "revisedTargetDate": "",
+    "ownerCBRE": "TB",
+    "ownerEngie": "PAPIC",
+    "lead": "ENGIE",
+    "lastUpdate": "",
+    "status": "In Progress",
+    "blocking": "",
+    "createdBy": "TB",
+    "comments": [],
+    "createdAt": "2026-06-04T20:03:48Z",
+    "updatedAt": "2026-06-04T20:03:48Z"
   }
 ]
